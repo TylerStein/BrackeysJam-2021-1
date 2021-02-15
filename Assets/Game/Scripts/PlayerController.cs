@@ -68,6 +68,10 @@ public class PlayerController : MonoBehaviour
         SetCatRiding();
     }
 
+    public void OnHazard(Hazard hazard) {
+        Respawn();
+    }
+
     private void OnDrawGizmos() {
         Gizmos.DrawLine(new Vector3(transform.position.x - 25f, levelYBound), new Vector3(transform.position.x + 25f, levelYBound));
     }
