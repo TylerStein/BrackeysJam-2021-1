@@ -41,6 +41,14 @@ public class PlayerCharacterController : MonoBehaviour
         groundMovementController.Jump();
     }
 
+    public void HoldJump() {
+        groundMovementController.HoldJump();
+    }
+
+    public void ReleaseJump() {
+        groundMovementController.ReleaseJump();
+    }
+
     public void Move(float horizontal, float deltaTime) {
         groundMovementController.Move(horizontal, deltaTime);
     }

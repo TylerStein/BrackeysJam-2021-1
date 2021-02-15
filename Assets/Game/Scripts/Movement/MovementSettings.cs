@@ -19,14 +19,18 @@ public class MovementSettings : ScriptableObject
     [Tooltip("Provide a vertical jump grace grap")]
     [SerializeField] public bool useJumpCushion = true;
 
-    [Tooltip("Provider an off the ground jump grace period")]
+    [Tooltip("Provide an off the ground jump grace period")]
     [SerializeField] public bool useJumpGracePeriod = true;
+
+    [Tooltip("Provide extra jump force when holding the jump button")]
+    [SerializeField] public bool useJumpBoostPeriod = true;
 
     [Header("General")]
 
     [Tooltip("Clamp all velocity to this magnitude")]
-    [SerializeField] public float maxXVelocity = 3.5f;
-    [SerializeField] public float maxYVelocity = 3.5f;
+    [SerializeField] public float maxXVelocity = 7f;
+    [SerializeField] public float maxYVelocity = 10f;
+    [SerializeField] public float maxYDownVelocity = 25f;
 
     [Header("Ground Movement")]
 
@@ -64,6 +68,12 @@ public class MovementSettings : ScriptableObject
 
     [Tooltip("How much time after losing ground contact should a jump be possible for")]
     [SerializeField] public float jumpGracePeriod = 0.15f;
+
+    [Tooltip("How long should extra jump force be applied while holding the jump button")]
+    [SerializeField] public float jumpBoostPeriod = 0.15f;
+
+    [Tooltip("The max velocity to uphold while in boost mode")]
+    [SerializeField] public float jumpBoostMaxVelocity = 20f;
 
     [Header("Contact Layers")]
 

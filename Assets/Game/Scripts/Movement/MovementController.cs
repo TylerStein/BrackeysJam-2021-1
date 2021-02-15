@@ -28,7 +28,6 @@ public class MovementController : MonoBehaviour
 
     [SerializeField] public MovementSettings movementSettings;
     [SerializeField] public new Collider2D collider;
-    [SerializeField] public Collider2D cushionCollider;
     [SerializeField] public new Rigidbody2D rigidbody;
 
     [SerializeField] private Transform _transform;
@@ -52,6 +51,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] private bool _simulate = true;
     [SerializeField] private ContactFilter2D _contactFilter;
     [SerializeField] private float _jumpGraceTimer = 0f;
+    [SerializeField] private float _jumpBoostTimer = 0f;
 
     public void Start() {
         if (!_transform) _transform = GetComponent<Transform>();
@@ -91,10 +91,10 @@ public class MovementController : MonoBehaviour
         }
         _didMoveLastFrame = false;
 
-
+        float maxYVelocity = _jumpBoostTimer > 0 ? movementSettings.jumpBoostMaxVelocity : movementSettings.maxYVelocity;
         rigidbody.velocity = new Vector2(
             Mathf.Clamp(rigidbody.velocity.x, -movementSettings.maxXVelocity, movementSettings.maxXVelocity),
-            Mathf.Clamp(rigidbody.velocity.y, -movementSettings.maxYVelocity, movementSettings.maxYVelocity)
+            Mathf.Clamp(rigidbody.velocity.y, -movementSettings.maxYDownVelocity, maxYVelocity)
         );
     }
 
@@ -115,6 +115,18 @@ public class MovementController : MonoBehaviour
         else if (movementSettings.useJumpGracePeriod && _jumpGraceTimer > 0f) _shouldJump = true;
 
         return _shouldJump;
+    }
+
+    public void HoldJump() {
+        if (_jumpBoostTimer > 0f) {
+            // float jumpBoostFraction = _jumpBoostTimer / movementSettings.jumpBoostPeriod;
+            // Debug.Log(jumpBoostFraction);
+            // SetVelocity(new Vector2(rigidbody.velocity.x, 0f) + (RelativeUp * movementSettings.jumpForce));
+        }
+    }
+
+    public void ReleaseJump() {
+        _jumpBoostTimer = 0f;
     }
 
     public void Move(float direction, float deltaTime) {
@@ -147,12 +159,19 @@ public class MovementController : MonoBehaviour
         updateContacts();
 
         if (_shouldJump) {
+            if (movementSettings.useJumpBoostPeriod) {
+                _jumpBoostTimer = movementSettings.jumpBoostPeriod;
+            }
+
             _shouldJump = false;
             _isGrounded = false;
             _isBlocked = false;
             _jumpGraceTimer = 0f;
             SetVelocity(new Vector2(rigidbody.velocity.x, 0f) + (RelativeUp * movementSettings.jumpForce));
         } else {
+            _jumpBoostTimer -= Time.deltaTime;
+            if (_jumpBoostTimer < 0f) _jumpBoostTimer = 0f;
+
             _jumpGraceTimer -= Time.deltaTime;
             if (_jumpGraceTimer < 0f) _jumpGraceTimer = 0f;
         }
@@ -187,15 +206,14 @@ public class MovementController : MonoBehaviour
     }
 
     private bool jumpCushionCollides() {
-        if (cushionCollider == null) throw new UnityException("MovementController is checking for cushion but no collider is assigned");
-        int castResults = cushionCollider.Cast(RelativeDown, _contactFilter, _jumpContacts);
+        int castResults = collider.Cast(RelativeDown, _jumpContacts);
         if (castResults > 0 && _jumpContacts[0].distance < movementSettings.jumpCushionDistance) {
             Debug.DrawLine(transform.position, _jumpContacts[0].point, Color.green, 0.5f);
             return true;
-        } else {
+        } else if (castResults > 0) {
             Debug.DrawLine(transform.position, _jumpContacts[0].point, Color.red, 0.5f);
-            return false;
         }
+        return false;
     }
 
     private void updateContacts() {

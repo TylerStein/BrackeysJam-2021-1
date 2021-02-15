@@ -17,8 +17,10 @@ MonoBehaviour:
   stickToGround: 1
   useJumpCushion: 1
   useJumpGracePeriod: 1
+  useJumpBoostPeriod: 1
   maxXVelocity: 7
-  maxYVelocity: 20
+  maxYVelocity: 6
+  maxYDownVelocity: 25
   groundMoveVelocity: 7
   groundMoveSmoothing: 0.05
   groundStopSmoothing: 0.2
@@ -27,8 +29,10 @@ MonoBehaviour:
   dampenAirMovement: 0
   airStopSmoothing: 0.07
   airMoveVelocity: 7
-  jumpCushionDistance: 0.75
+  jumpCushionDistance: 0.5
   jumpGracePeriod: 0.15
+  jumpBoostPeriod: 0.2
+  jumpBoostMaxVelocity: 32
   blockingLayer:
     serializedVersion: 2
     m_Bits: 320

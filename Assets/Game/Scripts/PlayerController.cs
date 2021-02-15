@@ -39,10 +39,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (isRobot == false && Input.GetButtonDown("Jump")) {
-            catController.Jump();
-        }
-
         if (catIsRiding) {
             catTransform.position = catRideAnchor.position;
         }
@@ -56,6 +52,10 @@ public class PlayerController : MonoBehaviour
             catController.FlipSpriteX(robotController.spriteRenderer.flipX);
         } else {
             cameraAnchor.position = catTransform.position;
+
+            if (Input.GetButtonDown("Jump")) catController.Jump();
+            if (Input.GetButton("Jump")) catController.HoldJump();
+            if (Input.GetButtonUp("Jump")) catController.ReleaseJump();
         }
     }
 
