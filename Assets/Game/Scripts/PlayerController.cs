@@ -68,13 +68,20 @@ public class PlayerController : MonoBehaviour
     public void SetCatRiding() {
         catIsRiding = true;
         isRobot = true;
-        catController.TeleportTo(catRideAnchor.position);
+        float catDist = Vector2.Distance(robotTrasnform.position, catTransform.position);
+        if (catDist <= catRideMinDistance) {
+            catController.TeleportTo(catRideAnchor.position);
+        }
         catController.SetPhysicsEnabled(true);
     }
 
     public void StopCatRiding() {
         catIsRiding = false;
-        catController.TeleportTo(catRideAnchor.position);
+        float catDist = Vector2.Distance(robotTrasnform.position, catTransform.position);
+        if (catDist <= catRideMinDistance) {
+            catController.TeleportTo(catRideAnchor.position);
+        }
+
         catController.SetPhysicsEnabled(true);
     }
 

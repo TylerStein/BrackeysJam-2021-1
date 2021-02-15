@@ -8,6 +8,7 @@ public class ObstacleButtonController : MonoBehaviour
 {
     public Animator AnimationPlayer;
 
+    public bool canDeactivate = true;
     public bool isHeld = false;
     public bool isObstacleOpen = false;
 
@@ -17,7 +18,7 @@ public class ObstacleButtonController : MonoBehaviour
         if (isHeld && !isObstacleOpen) {
             AnimationPlayer.SetBool("active", true);
             isObstacleOpen = true;
-        } else if (!isHeld && isObstacleOpen) {
+        } else if (!isHeld && isObstacleOpen && canDeactivate) {
             AnimationPlayer.SetBool("active", false);
             isObstacleOpen = false;
         }
