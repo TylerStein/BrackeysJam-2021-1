@@ -28,6 +28,7 @@ public class MovementController : MonoBehaviour
 
     [SerializeField] public MovementSettings movementSettings;
     [SerializeField] public new Collider2D collider;
+    [SerializeField] public Collider2D cushionCollider;
     [SerializeField] public new Rigidbody2D rigidbody;
 
     [SerializeField] private Transform _transform;
@@ -86,7 +87,7 @@ public class MovementController : MonoBehaviour
         }
 
         if (!_didMoveLastFrame) {
-            dampenMovement();
+            dampenMovement(Time.fixedDeltaTime);
         }
         _didMoveLastFrame = false;
 
@@ -116,7 +117,7 @@ public class MovementController : MonoBehaviour
         return _shouldJump;
     }
 
-    public void Move(float direction) {
+    public void Move(float direction, float deltaTime) {
         float adjustedDirection = direction * RelativeRight.x;
 
         if (adjustedDirection > 0) _lastDirection = 1f;
@@ -132,13 +133,11 @@ public class MovementController : MonoBehaviour
         if (!_didMoveLastFrame) return;
 
         if (_isGrounded) {
-            float desiredDirection = Mathf.Sign(direction);
             Vector2 targetVelocity = new Vector2(direction * movementSettings.groundMoveVelocity, rigidbody.velocity.y);
-            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentVelocity, movementSettings.groundMoveSmoothing));
+            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentVelocity, movementSettings.groundMoveSmoothing * deltaTime));
         } else if (movementSettings.canMoveInAir) {
-            float desiredDirection = Mathf.Sign(direction);
             Vector2 targetVelocity = new Vector2(direction * movementSettings.airMoveVelocity, rigidbody.velocity.y);
-            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentVelocity, movementSettings.airMoveSmoothing));
+            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentVelocity, movementSettings.airMoveSmoothing * deltaTime));
         }
     }
 
@@ -174,22 +173,29 @@ public class MovementController : MonoBehaviour
         SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, Vector2.zero, ref _currentVelocity, 0.0001f));
     }
 
-    private void dampenMovement() {
+    private void dampenMovement(float deltaTime) {
         if (_isGrounded) {
             Vector2 targetVelocity = new Vector2(0, rigidbody.velocity.y);
             if (Mathf.Abs(_currentVelocity.x) < 0.01f) _currentVelocity.Set(0, _currentVelocity.y);
-            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentVelocity, movementSettings.groundStopSmoothing));
+            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentVelocity, movementSettings.groundStopSmoothing * deltaTime));
 
         } else if (movementSettings.dampenAirMovement) {
             Vector2 targetVelocity = new Vector2(0, rigidbody.velocity.y);
             if (Mathf.Abs(_currentVelocity.x) < 0.01f) _currentVelocity.Set(0, _currentVelocity.y);
-            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentVelocity, movementSettings.airStopSmoothing));
+            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentVelocity, movementSettings.airStopSmoothing * deltaTime));
         }
     }
 
     private bool jumpCushionCollides() {
-        int castResults = collider.Cast(RelativeDown * movementSettings.jumpCushionDistance, _contactFilter, _jumpContacts);
-        return (castResults > 0 && _jumpContacts[0].distance < movementSettings.jumpCushionDistance);
+        if (cushionCollider == null) throw new UnityException("MovementController is checking for cushion but no collider is assigned");
+        int castResults = cushionCollider.Cast(RelativeDown, _contactFilter, _jumpContacts);
+        if (castResults > 0 && _jumpContacts[0].distance < movementSettings.jumpCushionDistance) {
+            Debug.DrawLine(transform.position, _jumpContacts[0].point, Color.green, 0.5f);
+            return true;
+        } else {
+            Debug.DrawLine(transform.position, _jumpContacts[0].point, Color.red, 0.5f);
+            return false;
+        }
     }
 
     private void updateContacts() {

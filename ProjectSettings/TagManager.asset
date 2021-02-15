@@ -9,6 +9,7 @@ TagManager:
   - Robot
   - Cat
   - Hazard
+  - Cushion
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Robot
   - Cat
   - Hazard
-  - 
+  - Cushion
   - 
   - 
   - 

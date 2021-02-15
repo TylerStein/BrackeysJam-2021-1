@@ -26,8 +26,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1")) {
             if (isRobot) {
                 isRobot = false;
-                catIsRiding = false;
-                catController.SetPhysicsEnabled(true);
+                StopCatRiding();
             } else {
                 isRobot = true;
             }
@@ -44,10 +43,6 @@ public class PlayerController : MonoBehaviour
             catController.Jump();
         }
 
-        float horizontal = Input.GetAxis("Horizontal");
-        if (isRobot) robotController.Move(horizontal);
-        else catController.Move(horizontal);
-
         if (catIsRiding) {
             catTransform.position = catRideAnchor.position;
         }
@@ -62,14 +57,25 @@ public class PlayerController : MonoBehaviour
         } else {
             cameraAnchor.position = catTransform.position;
         }
+    }
 
+    private void FixedUpdate() {
+        float horizontal = Input.GetAxis("Horizontal");
+        if (isRobot) robotController.Move(horizontal, Time.fixedDeltaTime);
+        else catController.Move(horizontal, Time.fixedDeltaTime);
     }
 
     public void SetCatRiding() {
         catIsRiding = true;
-        catController.SetPhysicsEnabled(false);
         isRobot = true;
-        catTransform.position = catRideAnchor.position;
+        catController.TeleportTo(catRideAnchor.position);
+        catController.SetPhysicsEnabled(true);
+    }
+
+    public void StopCatRiding() {
+        catIsRiding = false;
+        catController.TeleportTo(catRideAnchor.position);
+        catController.SetPhysicsEnabled(true);
     }
 
     public void Respawn() {

@@ -41,8 +41,8 @@ public class PlayerCharacterController : MonoBehaviour
         groundMovementController.Jump();
     }
 
-    public void Move(float horizontal) {
-        groundMovementController.Move(horizontal);
+    public void Move(float horizontal, float deltaTime) {
+        groundMovementController.Move(horizontal, deltaTime);
     }
 
     public void TeleportTo(Vector3 target) {

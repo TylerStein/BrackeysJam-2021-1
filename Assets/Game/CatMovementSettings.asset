@@ -27,7 +27,7 @@ MonoBehaviour:
   dampenAirMovement: 0
   airStopSmoothing: 0.07
   airMoveVelocity: 7
-  jumpCushionDistance: 0.15
+  jumpCushionDistance: 0.75
   jumpGracePeriod: 0.15
   blockingLayer:
     serializedVersion: 2
