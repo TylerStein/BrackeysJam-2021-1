@@ -32,6 +32,7 @@ public class MovementController : MonoBehaviour
 
     [SerializeField] private Transform _transform;
     [SerializeField] private ContactPoint2D[] _contacts = new ContactPoint2D[10];
+    [SerializeField] private RaycastHit2D[] _jumpContacts = new RaycastHit2D[1];
     [SerializeField] private Vector2 _currentVelocity = Vector2.zero;
     [SerializeField] private bool _shouldJump = false;
     [SerializeField] private float _lastDirection = 1f;
@@ -49,6 +50,7 @@ public class MovementController : MonoBehaviour
 
     [SerializeField] private bool _simulate = true;
     [SerializeField] private ContactFilter2D _contactFilter;
+    [SerializeField] private float _jumpGraceTimer = 0f;
 
     public void Start() {
         if (!_transform) _transform = GetComponent<Transform>();
@@ -105,12 +107,11 @@ public class MovementController : MonoBehaviour
     }
 
     public bool Jump(bool canJumpInAir = false) {
-        if (_isTouchingCeiling || movementSettings.canJump == false) return false;
-
-        if (canJumpInAir) _shouldJump = true;
+        if (_isTouchingCeiling || movementSettings.canJump == false) _shouldJump = false;
+        else if (canJumpInAir) _shouldJump = true;
         else if (_isGrounded) _shouldJump = true;
-
-        if ((_isGrounded || canJumpInAir) && !_isTouchingCeiling) _shouldJump = true;
+        else if (movementSettings.useJumpCushion && jumpCushionCollides()) _shouldJump = true;
+        else if (movementSettings.useJumpGracePeriod && _jumpGraceTimer > 0f) _shouldJump = true;
 
         return _shouldJump;
     }
@@ -148,24 +149,22 @@ public class MovementController : MonoBehaviour
 
         if (_shouldJump) {
             _shouldJump = false;
-
-            if (_isGrounded || _touchingWallDirection == 0) {
-                _isGrounded = false;
-                _isBlocked = false;
-                rigidbody.velocity = rigidbody.velocity + (RelativeUp * movementSettings.jumpForce);
-            } else {
-                Move(-_touchingWallDirection);
-                Vector2 rightForce = RelativeRight * movementSettings.jumpForce * 0.66f * -_touchingWallDirection;
-                Vector2 upForce = RelativeUp * movementSettings.jumpForce * 0.66f;
-                rigidbody.AddForce(rightForce + upForce);
-                _isGrounded = false;
-                _isBlocked = false;
-                _touchingWallDirection = 0;
-            }
-
+            _isGrounded = false;
+            _isBlocked = false;
+            _jumpGraceTimer = 0f;
+            SetVelocity(new Vector2(rigidbody.velocity.x, 0f) + (RelativeUp * movementSettings.jumpForce));
+        } else {
+            _jumpGraceTimer -= Time.deltaTime;
+            if (_jumpGraceTimer < 0f) _jumpGraceTimer = 0f;
         }
     }
 
+    public void SetGrounded() {
+        _isGrounded = true;
+        if (Velocity.y < 0.1f) {
+            _jumpGraceTimer = movementSettings.jumpGracePeriod;
+        }
+    }
 
     public void AddForce(Vector2 force) {
         rigidbody.AddForce(force, ForceMode2D.Impulse);
@@ -187,6 +186,12 @@ public class MovementController : MonoBehaviour
             SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentVelocity, movementSettings.airStopSmoothing));
         }
     }
+
+    private bool jumpCushionCollides() {
+        int castResults = collider.Cast(RelativeDown * movementSettings.jumpCushionDistance, _contactFilter, _jumpContacts);
+        return (castResults > 0 && _jumpContacts[0].distance < movementSettings.jumpCushionDistance);
+    }
+
     private void updateContacts() {
         _isGrounded = false;
         _isTouchingCeiling = false;
@@ -198,7 +203,7 @@ public class MovementController : MonoBehaviour
             Debug.DrawLine(_contacts[i].point, _contacts[i].point + _contacts[i].normal, Color.green);
 
             if (_contacts[i].normal.y > 0.5f) {
-                _isGrounded = true;
+                SetGrounded();
                 _groundTransform = _contacts[i].collider.transform;
                 _lastGroundPosition = _contacts[i].collider.transform.position;
             } else if (_contacts[i].normal.y < -0.5f) {

@@ -16,6 +16,12 @@ public class MovementSettings : ScriptableObject
     [Tooltip("Stick to moving ground transforms")]
     [SerializeField] public bool stickToGround = true;
 
+    [Tooltip("Provide a vertical jump grace grap")]
+    [SerializeField] public bool useJumpCushion = true;
+
+    [Tooltip("Provider an off the ground jump grace period")]
+    [SerializeField] public bool useJumpGracePeriod = true;
+
     [Header("General")]
 
     [Tooltip("Clamp all velocity to this magnitude")]
@@ -51,17 +57,13 @@ public class MovementSettings : ScriptableObject
     [Tooltip("Movement Velocity in Air (meters/s)")]
     [SerializeField] public float airMoveVelocity = 2.0f;
 
-    [Header("Contact Distances")]
+    [Header("Accessibility")]
 
-    [Tooltip("How close should the ground be below to consider touching (meters)")]
-    [SerializeField] public float minGroundDistance = 0.01f;
+    [Tooltip("How close should the ground be below to allow jumping if cushion is enabled")]
+    [SerializeField] public float jumpCushionDistance = 0.25f;
 
-    [Tooltip("How close should the ceiling be above to consider touching (meters")]
-    [SerializeField] public float minCeilingDistance = 0.01f;
-
-    [Tooltip("How close should a wall be beside the player to consider touching (meters)")]
-    [SerializeField] public float minWallDistance = 0.01f;
-
+    [Tooltip("How much time after losing ground contact should a jump be possible for")]
+    [SerializeField] public float jumpGracePeriod = 0.15f;
 
     [Header("Contact Layers")]
 
