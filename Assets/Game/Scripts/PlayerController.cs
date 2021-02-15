@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public Transform robotTrasnform;
     public Transform catTransform;
     public Transform catRideAnchor;
+    public Transform cameraAnchor;
 
     public PlayerCharacterController robotController;
     public PlayerCharacterController catController;
@@ -54,6 +55,14 @@ public class PlayerController : MonoBehaviour
         if (robotTrasnform.position.y < levelYBound || catTransform.position.y < levelYBound) {
             Respawn();
         }
+
+        if (isRobot) {
+            cameraAnchor.position = robotTrasnform.position;
+            catController.FlipSpriteX(robotController.spriteRenderer.flipX);
+        } else {
+            cameraAnchor.position = catTransform.position;
+        }
+
     }
 
     public void SetCatRiding() {

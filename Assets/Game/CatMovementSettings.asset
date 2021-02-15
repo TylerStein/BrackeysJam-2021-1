@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: CatMovementSettings
   m_EditorClassIdentifier: 
   canJump: 1
-  canWallJump: 0
   canMoveInAir: 1
   stickToGround: 1
-  maxXVelocity: 5
-  maxYVelocity: 5
-  groundMoveVelocity: 14
+  maxXVelocity: 7
+  maxYVelocity: 20
+  groundMoveVelocity: 7
   groundMoveSmoothing: 0.05
-  groundStopSmoothing: 0.1
-  jumpForce: 1200
+  groundStopSmoothing: 0.2
+  jumpForce: 20
   airMoveSmoothing: 0.05
   dampenAirMovement: 0
   airStopSmoothing: 0.07
-  airMoveVelocity: 3.5
+  airMoveVelocity: 7
   minGroundDistance: 0.01
   minCeilingDistance: 0.01
   minWallDistance: 0.01

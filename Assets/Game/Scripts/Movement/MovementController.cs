@@ -18,6 +18,9 @@ public class MovementController : MonoBehaviour
     // Rigidbody's current velocity
     public Vector2 Velocity { get { return rigidbody.velocity; } }
 
+    // Is this calculating physics updates
+    public bool Simulating { get { return _simulate; } }
+
     public Vector2 RelativeUp { get { return _relativeUp; } }
     public Vector2 RelativeRight { get { return _relativeRight; } }
     public Vector2 RelativeLeft { get { return _relativeRight * -1f; } }

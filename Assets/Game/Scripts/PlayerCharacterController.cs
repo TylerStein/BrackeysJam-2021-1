@@ -23,7 +23,11 @@ public class PlayerCharacterController : MonoBehaviour
     // Update is called once per frame
     void Update() {
         // if (gameStateController.IsPaused) return;
-        spriteRenderer.flipX = (groundMovementController.LastDirection < 0f);
+
+        if (groundMovementController.Simulating) {
+            spriteRenderer.flipX = (groundMovementController.LastDirection < 0f);
+        }
+
         // animator.SetBool("falling", groundMovementController.Velocity.y < 0);
         // animator.SetBool("moving", Mathf.Abs(groundMovementController.Velocity.x) > 0.15f);
         // animator.SetBool("grounded", groundMovementController.IsGrounded);
@@ -44,5 +48,9 @@ public class PlayerCharacterController : MonoBehaviour
     public void TeleportTo(Vector3 target) {
         transform.position = target;
         groundMovementController.SetVelocity(Vector2.zero);
+    }
+
+    public void FlipSpriteX(bool flipX) {
+        spriteRenderer.flipX = flipX;
     }
 }

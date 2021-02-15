@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: RobotMovementSettings
   m_EditorClassIdentifier: 
   canJump: 0
-  canWallJump: 0
   canMoveInAir: 0
   stickToGround: 1
-  maxXVelocity: 3.5
-  maxYVelocity: 3.5
+  maxXVelocity: 2
+  maxYVelocity: 8
   groundMoveVelocity: 10
   groundMoveSmoothing: 0.05
   groundStopSmoothing: 0.1
@@ -25,7 +24,7 @@ MonoBehaviour:
   airMoveSmoothing: 0.05
   dampenAirMovement: 0
   airStopSmoothing: 0.1
-  airMoveVelocity: 3.5
+  airMoveVelocity: 8
   minGroundDistance: 0.01
   minCeilingDistance: 0.01
   minWallDistance: 0.01
