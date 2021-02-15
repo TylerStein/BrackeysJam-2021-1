@@ -28,7 +28,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] public new Rigidbody2D rigidbody;
 
     [SerializeField] private Transform _transform;
-    [SerializeField] private RaycastHit2D[] _contacts = new RaycastHit2D[3];
+    [SerializeField] private ContactPoint2D[] _contacts = new ContactPoint2D[10];
     [SerializeField] private Vector2 _currentVelocity = Vector2.zero;
     [SerializeField] private bool _shouldJump = false;
     [SerializeField] private float _lastDirection = 1f;
@@ -90,7 +90,6 @@ public class MovementController : MonoBehaviour
             Mathf.Clamp(rigidbody.velocity.x, -movementSettings.maxXVelocity, movementSettings.maxXVelocity),
             Mathf.Clamp(rigidbody.velocity.y, -movementSettings.maxYVelocity, movementSettings.maxYVelocity)
         );
-        // rigidbody.velocity = Vector2.ClampMagnitude(rigidbody.velocity, movementSettings.maxVelocity);
     }
 
     public void SetRelative(Vector2 up, Vector2 right) {
@@ -142,9 +141,7 @@ public class MovementController : MonoBehaviour
     public void Update() {
         if (!_simulate) return;
 
-        updateTouchingWalls();
-        updateTouchingCeiling();
-        updateBlocked();
+        updateContacts();
 
         if (_shouldJump) {
             _shouldJump = false;
@@ -187,63 +184,31 @@ public class MovementController : MonoBehaviour
             SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentVelocity, movementSettings.airStopSmoothing));
         }
     }
+    private void updateContacts() {
+        _isGrounded = false;
+        _isTouchingCeiling = false;
+        _isBlocked = false;
+        _touchingWallDirection = 0;
 
-    private void updateTouchingWalls() {
-        if (_lastDirection < 0) {
-            // looking left, test left first
-            if (isTouching(RelativeLeft, movementSettings.minWallDistance * 1.1f, movementSettings.blockingLayer)) {
-                _touchingWallDirection = -1;
-            } else if (isTouching(RelativeRight, movementSettings.minWallDistance * 1.1f, movementSettings.blockingLayer)) {
-                _touchingWallDirection = 1;
-            } else {
-                _touchingWallDirection = 0;
-            }
-        } else {
-            // looking right, test right first
-            if (isTouching(RelativeRight, movementSettings.minWallDistance * 1.1f, movementSettings.blockingLayer)) {
-                _touchingWallDirection = 1;
-            } else if (isTouching(RelativeLeft, movementSettings.minWallDistance * 1.1f, movementSettings.blockingLayer)) {
-                _touchingWallDirection = -1;
-            } else {
-                _touchingWallDirection = 0;
-            }
-        }
-    }
-
-    private void updateTouchingCeiling() {
-        _isTouchingCeiling = isTouching(RelativeUp, movementSettings.minCeilingDistance * 1.1f, movementSettings.blockingLayer);
-    }
-
-    private void updateBlocked() {
-       // ContactFilter2D filter = new ContactFilter2D();
-       // filter.SetLayerMask(1 << movementSettings.blockingLayer);
-
-        int contactCount = collider.Cast(RelativeDown, _contactFilter, _contacts, movementSettings.minGroundDistance);
+        int contactCount = collider.GetContacts(_contacts);
         for (int i = 0; i < contactCount; i++) {
-            if (_contacts[i].collider != null && _contacts[i].transform != transform) {
-                Debug.DrawLine(_contacts[i].point, _contacts[i].point + _contacts[i].normal * 2f, Color.red);
-                _isBlocked = true;
+            Debug.DrawLine(_contacts[i].point, _contacts[i].point + _contacts[i].normal, Color.green);
+
+            if (_contacts[i].normal.y > 0.5f) {
                 _isGrounded = true;
                 _groundTransform = _contacts[i].collider.transform;
-                _lastGroundPosition = _groundTransform.position;
-                return;
+                _lastGroundPosition = _contacts[i].collider.transform.position;
+            } else if (_contacts[i].normal.y < -0.5f) {
+                _isTouchingCeiling = true;
+            }
+
+            if (_contacts[i].normal.x > 0.5f) {
+                _isBlocked = true;
+                _touchingWallDirection = -1;
+            } else if (_contacts[i].normal.x < -0.5f) {
+                _isBlocked = true;
+                _touchingWallDirection = 1;
             }
         }
-        _isGrounded = false;
-        _isBlocked = false;
-        _groundTransform = null;
-    }
-
-    private bool isTouching(Vector2 direction, float distance, int mask = 1 << 0) {
-        ContactFilter2D filter = new ContactFilter2D();
-        filter.layerMask = mask;
-
-        int contactCount = collider.Cast(direction, filter, _contacts, distance);
-        for (int i = 0; i < contactCount; i++) {
-            if (_contacts[i].collider != null && _contacts[i].collider != collider) {
-                return true;
-            }
-        }
-        return false;
     }
 }
