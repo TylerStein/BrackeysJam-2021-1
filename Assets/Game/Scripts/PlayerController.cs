@@ -19,10 +19,25 @@ public class PlayerController : MonoBehaviour
     public PlayerCharacterController catController;
 
     public CheckpointController checkpointController;
+    public GameManager gameManager;
+
+    private void Start() {
+        if (!gameManager) gameManager = FindObjectOfType<GameManager>();
+        gameManager.PauseEvent.AddListener((isPaused) => {
+            if (isPaused) {
+                robotController.SetPhysicsEnabled(false);
+                catController.SetPhysicsEnabled(false);
+            } else {
+                robotController.SetPhysicsEnabled(true);
+                if (!catIsRiding) catController.SetPhysicsEnabled(true);
+            }
+        });
+    }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+        if (gameManager.IsPaused) return;
+
         if (Input.GetButtonDown("Fire1")) {
             if (isRobot) {
                 isRobot = false;
@@ -60,6 +75,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        if (gameManager.IsPaused) return;
+
         float horizontal = Input.GetAxis("Horizontal");
         if (isRobot) robotController.Move(horizontal, Time.fixedDeltaTime);
         else catController.Move(horizontal, Time.fixedDeltaTime);

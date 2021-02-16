@@ -19,4 +19,11 @@ public class GameManager : MonoBehaviour
         IsPaused = false;
         PauseEvent.Invoke(IsPaused);
     }
+
+    public void Update() {
+        if (Input.GetButtonDown("Pause")) {
+            if (IsPaused) ResumeGame();
+            else PauseGame();
+        }
+    }
 }

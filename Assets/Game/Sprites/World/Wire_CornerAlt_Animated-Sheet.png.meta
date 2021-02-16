@@ -1,7 +1,46 @@
 fileFormatVersion: 2
 guid: eb4056b3562ec7f4b9bf573226904f03
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 7781653171768881921
+    second: Wire_CornerAlt_Animated-Sheet_0
+  - first:
+      213: -5869931475669386482
+    second: Wire_CornerAlt_Animated-Sheet_1
+  - first:
+      213: 3411810999094084381
+    second: Wire_CornerAlt_Animated-Sheet_2
+  - first:
+      213: 4763384025152220708
+    second: Wire_CornerAlt_Animated-Sheet_3
+  - first:
+      213: 1583732175210586352
+    second: Wire_CornerAlt_Animated-Sheet_4
+  - first:
+      213: -1165104794449358693
+    second: Wire_CornerAlt_Animated-Sheet_5
+  - first:
+      213: 3195177474467998805
+    second: Wire_CornerAlt_Animated-Sheet_6
+  - first:
+      213: 1115922592387577088
+    second: Wire_CornerAlt_Animated-Sheet_7
+  - first:
+      213: -5381453474576260951
+    second: Wire_CornerAlt_Animated-Sheet_8
+  - first:
+      213: 8523367840339249148
+    second: Wire_CornerAlt_Animated-Sheet_9
+  - first:
+      213: -7567008800977369819
+    second: Wire_CornerAlt_Animated-Sheet_10
+  - first:
+      213: -1660697185327196370
+    second: Wire_CornerAlt_Animated-Sheet_11
+  - first:
+      213: -546344493079730167
+    second: Wire_CornerAlt_Animated-Sheet_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -139,133 +178,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Grass_9slice_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 137961a3eaa0c0490800000000000000
-      internalID: -7778830712960542927
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Grass_9slice_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 87f36ec28d0eef950800000000000000
-      internalID: 6484867732530937720
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Grass_9slice_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f6eb831c334448a00800000000000000
-      internalID: 757805626380828271
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Grass_9slice_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2cfa21b3aa4e89e70800000000000000
-      internalID: 9122292465025593282
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Grass_9slice_4
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d9800e820784e9f20800000000000000
-      internalID: 3431259612662204573
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Grass_9slice_5
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9cb2bec8c02aeffc0800000000000000
-      internalID: -3459149288986432567
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Grass_9slice_6
+      name: Wire_CornerAlt_Animated-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -279,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0b7c18aecfb8ad50800000000000000
-      internalID: 6748854935919295242
+      spriteID: 103739ca45cfdfb60800000000000000
+      internalID: 7781653171768881921
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Grass_9slice_7
+      name: Wire_CornerAlt_Animated-Sheet_1
       rect:
         serializedVersion: 2
         x: 32
@@ -300,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a9826bf367cfdea0800000000000000
-      internalID: -5845734559070385754
+      spriteID: e0b77d05c60d98ea0800000000000000
+      internalID: -5869931475669386482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Grass_9slice_8
+      name: Wire_CornerAlt_Animated-Sheet_2
       rect:
         serializedVersion: 2
         x: 64
@@ -321,8 +234,218 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d45a93c69c2a21ef0800000000000000
-      internalID: -138869652507220659
+      spriteID: d1306c1f600395f20800000000000000
+      internalID: 3411810999094084381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wire_CornerAlt_Animated-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42ee7fb8880fa1240800000000000000
+      internalID: 4763384025152220708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wire_CornerAlt_Animated-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f0a8cab50c8af510800000000000000
+      internalID: 1583732175210586352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wire_CornerAlt_Animated-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b90ddb8cc57b4dfe0800000000000000
+      internalID: -1165104794449358693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wire_CornerAlt_Animated-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55caef7fbfc875c20800000000000000
+      internalID: 3195177474467998805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wire_CornerAlt_Animated-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00538147fad8c7f00800000000000000
+      internalID: 1115922592387577088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wire_CornerAlt_Animated-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a02798b39c3155b0800000000000000
+      internalID: -5381453474576260951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wire_CornerAlt_Animated-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf7c86d54e5194670800000000000000
+      internalID: 8523367840339249148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wire_CornerAlt_Animated-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5254d7556959cf690800000000000000
+      internalID: -7567008800977369819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wire_CornerAlt_Animated-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e27d41d65b404f8e0800000000000000
+      internalID: -1660697185327196370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wire_CornerAlt_Animated-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 908edf4049efa68f0800000000000000
+      internalID: -546344493079730167
       vertices: []
       indices: 
       edges: []

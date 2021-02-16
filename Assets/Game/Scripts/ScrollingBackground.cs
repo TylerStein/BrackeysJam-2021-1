@@ -13,8 +13,12 @@ public class ScrollingBackground : MonoBehaviour
     public bool autoXDistance = true;
     public float xDistance = 15f;
 
+    public GameManager gameManager;
+
     void Start()
     {
+        if (!gameManager) gameManager = FindObjectOfType<GameManager>();
+
         if (objects.Count < 3) throw new UnityException("ScrollingBackground requires at least 3 objects");
         if (autoXDistance) {
             xDistance = Mathf.Abs(objects[0].position.x - objects[1].position.x);
@@ -27,6 +31,8 @@ public class ScrollingBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameManager.IsPaused) return;
+
         foreach (Transform t in objects) {
             t.Translate(scrollSpeed * Time.deltaTime);
         }
