@@ -35,4 +35,4 @@ MonoBehaviour:
   jumpBoostMaxVelocity: 32
   blockingLayer:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 4352

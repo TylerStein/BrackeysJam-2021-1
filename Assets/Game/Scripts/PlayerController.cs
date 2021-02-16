@@ -111,6 +111,10 @@ public class PlayerController : MonoBehaviour
         Respawn();
     }
 
+    public void OnEnemyHazard(EnemyController enemy) {
+        Respawn();
+    }
+
     private void OnDrawGizmos() {
         Gizmos.DrawLine(new Vector3(transform.position.x - 25f, levelYBound), new Vector3(transform.position.x + 25f, levelYBound));
     }

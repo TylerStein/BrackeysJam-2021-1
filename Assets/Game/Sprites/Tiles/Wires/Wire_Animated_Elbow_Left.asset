@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Wire_Animated_Elbow_Left
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 7781653171768881921, guid: eb4056b3562ec7f4b9bf573226904f03, type: 3}
+  - {fileID: -5869931475669386482, guid: eb4056b3562ec7f4b9bf573226904f03, type: 3}
+  - {fileID: 3411810999094084381, guid: eb4056b3562ec7f4b9bf573226904f03, type: 3}
+  - {fileID: 4763384025152220708, guid: eb4056b3562ec7f4b9bf573226904f03, type: 3}
+  - {fileID: 1583732175210586352, guid: eb4056b3562ec7f4b9bf573226904f03, type: 3}
+  - {fileID: -1165104794449358693, guid: eb4056b3562ec7f4b9bf573226904f03, type: 3}
+  - {fileID: 3195177474467998805, guid: eb4056b3562ec7f4b9bf573226904f03, type: 3}
+  - {fileID: 1115922592387577088, guid: eb4056b3562ec7f4b9bf573226904f03, type: 3}
+  - {fileID: -5381453474576260951, guid: eb4056b3562ec7f4b9bf573226904f03, type: 3}
+  - {fileID: 8523367840339249148, guid: eb4056b3562ec7f4b9bf573226904f03, type: 3}
+  - {fileID: -7567008800977369819, guid: eb4056b3562ec7f4b9bf573226904f03, type: 3}
+  - {fileID: -1660697185327196370, guid: eb4056b3562ec7f4b9bf573226904f03, type: 3}
+  - {fileID: -546344493079730167, guid: eb4056b3562ec7f4b9bf573226904f03, type: 3}
+  m_MinSpeed: 16
+  m_MaxSpeed: 16
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0

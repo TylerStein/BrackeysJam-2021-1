@@ -12,6 +12,8 @@ public class MovementController : MonoBehaviour
     // Is there anything beneath this
     public bool IsBlocked { get { return _isBlocked; } }
 
+    public bool IsHorizontalBlocked { get { return _isHorizontalBlocked; } }
+
     // Is the player colliding down
     public bool IsGrounded { get { return _isGrounded; } }
 
@@ -41,6 +43,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] private bool _isTouchingCeiling = false;
     [SerializeField] private bool _didMoveLastFrame = false;
     [SerializeField] private bool _isBlocked = false;
+    [SerializeField] private bool _isHorizontalBlocked = false;
 
     [SerializeField] private Vector2 _relativeUp = Vector2.up;
     [SerializeField] private Vector2 _relativeRight = Vector2.right;
@@ -220,6 +223,7 @@ public class MovementController : MonoBehaviour
         _isGrounded = false;
         _isTouchingCeiling = false;
         _isBlocked = false;
+        _isHorizontalBlocked = false;
         _touchingWallDirection = 0;
 
         int contactCount = collider.GetContacts(_contacts);
@@ -237,9 +241,11 @@ public class MovementController : MonoBehaviour
             if (_contacts[i].normal.x > 0.5f) {
                 _isBlocked = true;
                 _touchingWallDirection = -1;
+                _isHorizontalBlocked = true;
             } else if (_contacts[i].normal.x < -0.5f) {
                 _isBlocked = true;
                 _touchingWallDirection = 1;
+                _isHorizontalBlocked = true;
             }
         }
     }

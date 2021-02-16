@@ -10,6 +10,8 @@ public class UISelectController : MonoBehaviour
     public UISelectable defaultSelection;
     public UISelectable currentSelection;
 
+    public RectTransform selectionIcon;
+
     public float axisThreshold = 0.75f;
     public bool axisHorizontalUsed = false;
     public bool axisVerticalUsed = false;
@@ -18,13 +20,17 @@ public class UISelectController : MonoBehaviour
     public float lastVertical = 0f;
 
     private void Start() {
-        SetSelection(currentSelection ?? defaultSelection);
+        selectionIcon.gameObject.SetActive(false);
         if (!eventSystem) eventSystem = FindObjectOfType<EventSystem>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+        if (currentSelection == null && defaultSelection != null) {
+            SetSelection(currentSelection ?? defaultSelection);
+            return;
+        }
+
         lastHorizontal = Input.GetAxis("Horizontal");
         float hAbs = Mathf.Abs(lastHorizontal);
         if (hAbs > axisThreshold) {
@@ -84,6 +90,16 @@ public class UISelectController : MonoBehaviour
         currentSelection = selection;
         if (selection) {
             currentSelection.Enter(eventSystem);
+            selectionIcon.gameObject.SetActive(true);
+
+            RectTransform anchor = currentSelection.GetSelectIconAnchor();
+            selectionIcon.SetParent(anchor.parent);
+            selectionIcon.anchoredPosition = anchor.anchoredPosition;
+            selectionIcon.position = anchor.position;
+
+            // selectionIcon.position = currentSelection.GetSelectIconAnchor().anchoredPosition;
+        } else {
+            selectionIcon.gameObject.SetActive(false);
         }
     }
 }

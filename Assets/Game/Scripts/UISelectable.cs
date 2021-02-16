@@ -10,6 +10,10 @@ public class UISelectable : MonoBehaviour
     public UISelectable nextLeft;
     public UISelectable nextRight;
 
+    public virtual RectTransform GetSelectIconAnchor() {
+        return GetComponent<RectTransform>();
+    }
+
     public virtual void Enter(EventSystem eventSystem) {
         //
     }
