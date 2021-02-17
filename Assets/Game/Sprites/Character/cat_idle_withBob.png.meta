@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 6a3620b5ddf8234469cf13be1d630ea5
+guid: 0defadde92bf70849bd5330172b6deb1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6864163242589286015
-    second: bot_idle_0
+      213: 8923095802963925543
+    second: cat_idle_withBob_0
   - first:
-      213: 6148450161808634508
-    second: bot_idle_1
+      213: 3609271046031037531
+    second: cat_idle_withBob_1
   - first:
-      213: -3787842070219211084
-    second: bot_idle_2
+      213: 3811941650623223976
+    second: cat_idle_withBob_2
   - first:
-      213: 8892873545161797761
-    second: bot_idle_3
+      213: -353539947162545180
+    second: cat_idle_withBob_3
   - first:
-      213: -1620145613427538166
-    second: bot_idle_4
+      213: 7178826202289469423
+    second: cat_idle_withBob_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -63,7 +63,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -80,7 +80,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -92,7 +92,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 256
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -140,7 +140,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 256
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -154,106 +154,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bot_idle_0
+      name: cat_idle_withBob_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1811c2516e79db0a0800000000000000
-      internalID: -6864163242589286015
+      spriteID: 72a91703b5435db70800000000000000
+      internalID: 8923095802963925543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bot_idle_1
+      name: cat_idle_withBob_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5458c4c4e4b61230800000000000000
+      internalID: 3609271046031037531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_idle_withBob_2
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c82fbc5a8dea35550800000000000000
-      internalID: 6148450161808634508
+      spriteID: 8a8d9e51cbcb6e430800000000000000
+      internalID: 3811941650623223976
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bot_idle_2
+      name: cat_idle_withBob_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e3577b8a49f71bf0800000000000000
+      internalID: -353539947162545180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat_idle_withBob_4
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bebd4bb4b1ee6bc0800000000000000
-      internalID: -3787842070219211084
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bot_idle_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 18076d37f55d96b70800000000000000
-      internalID: 8892873545161797761
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bot_idle_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a078e3306261489e0800000000000000
-      internalID: -1620145613427538166
+      spriteID: fe7fabb556050a360800000000000000
+      internalID: 7178826202289469423
       vertices: []
       indices: 
       edges: []

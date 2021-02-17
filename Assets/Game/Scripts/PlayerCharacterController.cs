@@ -13,6 +13,7 @@ public class PlayerCharacterController : MonoBehaviour
 
     public Transform spriteTransform;
     public SpriteRenderer spriteRenderer;
+    public CharacterAnimator animator;
 
     // Start is called before the first frame update
     void Start() {
@@ -25,12 +26,11 @@ public class PlayerCharacterController : MonoBehaviour
         // if (gameStateController.IsPaused) return;
 
         if (groundMovementController.Simulating) {
-            spriteRenderer.flipX = (groundMovementController.LastDirection < 0f);
+            spriteRenderer.flipX = (groundMovementController.LastDirection > 0f);
         }
 
-        // animator.SetBool("falling", groundMovementController.Velocity.y < 0);
-        // animator.SetBool("moving", Mathf.Abs(groundMovementController.Velocity.x) > 0.15f);
-        // animator.SetBool("grounded", groundMovementController.IsGrounded);
+        animator.SetGrounded(groundMovementController.IsGrounded);
+        animator.SetRising(groundMovementController.Velocity.y > 0.1f);
     }
 
     public void SetPhysicsEnabled(bool enabled) {
@@ -38,7 +38,9 @@ public class PlayerCharacterController : MonoBehaviour
     }
 
     public void Jump() {
-        groundMovementController.Jump();
+        if (groundMovementController.Jump()) {
+            animator.TriggerJump();
+        }
     }
 
     public void HoldJump() {
@@ -51,6 +53,7 @@ public class PlayerCharacterController : MonoBehaviour
 
     public void Move(float horizontal, float deltaTime) {
         groundMovementController.Move(horizontal, deltaTime);
+        animator.SetWalking(Mathf.Abs(horizontal) > 0.25f);
     }
 
     public void TeleportTo(Vector3 target) {

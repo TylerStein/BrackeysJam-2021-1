@@ -18,17 +18,17 @@ MonoBehaviour:
   useJumpCushion: 1
   useJumpGracePeriod: 1
   useJumpBoostPeriod: 1
-  maxXVelocity: 7
+  maxXVelocity: 6
   maxYVelocity: 6
   maxYDownVelocity: 25
-  groundMoveVelocity: 7
-  groundMoveSmoothing: 0.05
-  groundStopSmoothing: 0.2
+  groundMoveVelocity: 6
+  groundMoveSmoothing: 0.02
+  groundStopSmoothing: 0.05
   jumpForce: 20
   airMoveSmoothing: 0.05
   dampenAirMovement: 0
   airStopSmoothing: 0.07
-  airMoveVelocity: 7
+  airMoveVelocity: 6
   jumpCushionDistance: 0.5
   jumpGracePeriod: 0.15
   jumpBoostPeriod: 0.2

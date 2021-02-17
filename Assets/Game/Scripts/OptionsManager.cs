@@ -23,6 +23,11 @@ public class OptionsManager : MonoBehaviour
         if (loadOnStart) Load();
     }
 
+    public void ChangeOption_Volume(float value) {
+        options.volume = Mathf.Clamp(options.volume + value, 0f, 1f);
+        Save();
+    }
+
     public void Load() {
         options = new GameOptions() {
             volume = PlayerPrefs.GetFloat(optionString_volume, 1.0f)

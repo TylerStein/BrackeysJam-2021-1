@@ -11,9 +11,9 @@ public class EnemyController : MonoBehaviour
     public GameManager gameManager;
     public SpriteRenderer sprite;
     public bool wasBlockedLastFrame = false;
-    public Animator animator;
     public LayerMask HazardLayerMask;
     public PlayerController playerController;
+    public CharacterAnimator animator;
 
     public void Start() {
         if (!gameManager) gameManager = FindObjectOfType<GameManager>();
@@ -39,12 +39,11 @@ public class EnemyController : MonoBehaviour
         }
 
         if (Physics2D.Raycast(edgeRayOrigin, Vector2.down, edgeRayDistance, movement.movementSettings.blockingLayer.value) == false) {
-            Debug.Log("Flip");
             moveDirection *= -1;
         }
 
         sprite.flipX = movement.LastDirection > 0f;
-        animator.SetBool("walking", true);
+        animator.SetWalking(true);
     }
 
     public void OnDrawGizmos() {

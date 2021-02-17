@@ -24,6 +24,10 @@ public class UISelectController : MonoBehaviour
         if (!eventSystem) eventSystem = FindObjectOfType<EventSystem>();
     }
 
+    private void OnDisable() {
+        SetSelection(null);
+    }
+
     // Update is called once per frame
     void Update() {
         if (currentSelection == null && defaultSelection != null) {
