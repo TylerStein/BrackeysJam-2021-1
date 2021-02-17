@@ -23,7 +23,7 @@ public class UISelectButton : UISelectable
     }
 
     public override void Click(EventSystem eventSystem) {
-        ExecuteEvents.Execute(button.gameObject, new BaseEventData(eventSystem), ExecuteEvents.submitHandler);
+        button.OnSubmit(new BaseEventData(eventSystem));
     }
 
     public override void Leave(EventSystem eventSystem) {

@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Default/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/Game/Scenes/MainMenu.unity
+    guid: d96f606595676bb46a55d04f5dc0cee2
+  - enabled: 1
+    path: Assets/Game/Scenes/Tyler.unity
+    guid: 05fa315cf6da54e469510b3167a297b0
   m_configObjects: {}

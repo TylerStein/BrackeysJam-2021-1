@@ -10,7 +10,7 @@ public class AudioManager : MonoBehaviour
 
     public string masterVolumeParameter = "MasterVolume";
 
-    void Start()
+    void Awake()
     {
         if (!optionsManager) optionsManager = FindObjectOfType<OptionsManager>();
         optionsManager.changeEvent.AddListener(OnChangeOptions);
@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void OnChangeOptions(GameOptions options)
     {
-        mixer.SetFloat(masterVolumeParameter, options.volume);
+        float dbVolume = (options.volume * 80f) - 80f;
+        mixer.SetFloat(masterVolumeParameter, dbVolume);
     }
 }

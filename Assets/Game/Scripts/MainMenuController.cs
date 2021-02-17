@@ -13,10 +13,10 @@ public class MainMenuController : MonoBehaviour
     public UISelectButton startButton;
     public UISelectButton optionsButton;
     
-    [Header("Options View")]
-    public CanvasGroup optionsGroup;
-    public UISelectController optionsController;
-    public UISelectButton backButton;
+    //[Header("Options View")]
+    //public CanvasGroup optionsGroup;
+    //public UISelectController optionsController;
+    //public UISelectButton backButton;
 
     // Start is called before the first frame update
     void Start()
@@ -25,21 +25,21 @@ public class MainMenuController : MonoBehaviour
             SceneManager.LoadScene(startSceneIndex);
         });
 
-        optionsButton.button.onClick.AddListener(() => {
-            HideGroup(mainGroup);
-            mainController.enabled = false;
+        //optionsButton.button.onClick.AddListener(() => {
+        //    HideGroup(mainGroup);
+        //    mainController.enabled = false;
 
-            ShowGroup(optionsGroup);
-            optionsController.enabled = true;
-        });
+        //    ShowGroup(optionsGroup);
+        //    optionsController.enabled = true;
+        //});
 
-        backButton.button.onClick.AddListener(() => {
-            HideGroup(optionsGroup);
-            optionsController.enabled = false;
+        //backButton.button.onClick.AddListener(() => {
+        //    HideGroup(optionsGroup);
+        //    optionsController.enabled = false;
 
-            ShowGroup(mainGroup);
-            mainController.enabled = true;
-        });
+        //    ShowGroup(mainGroup);
+        //    mainController.enabled = true;
+        //});
     }
 
     void HideGroup(CanvasGroup group) {
