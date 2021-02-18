@@ -4,33 +4,43 @@ using UnityEngine;
 
 public class PlayerCharacterController : MonoBehaviour
 {
-    // public GameStateController gameStateController;
+    public GameManager gameManager;
     public MovementController groundMovementController;
-    // public GroundMovementController2 groundMovementController;
-    // public CameraController cameraController;
-    // public MusicController musicController;
-    // public Animator animator;
 
     public Transform spriteTransform;
     public SpriteRenderer spriteRenderer;
     public CharacterAnimator animator;
+    public CharacterAudioController audioController;
+
+    public bool isIndividuallyControlled = true;
+    public int minFramesRising = 10;
+    private int framesRising = 0;
 
     // Start is called before the first frame update
     void Start() {
-        // if (!gameStateController) gameStateController = FindObjectOfType<GameStateController>();
-        // if (!musicController) musicController = FindObjectOfType<MusicController>();
+        if (!gameManager) gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update() {
-        // if (gameStateController.IsPaused) return;
+        if (gameManager.IsPaused) return;
 
         if (groundMovementController.Simulating) {
             spriteRenderer.flipX = (groundMovementController.LastDirection > 0f);
         }
 
-        animator.SetGrounded(groundMovementController.IsGrounded);
-        animator.SetRising(groundMovementController.Velocity.y > 0.1f);
+        if (isIndividuallyControlled) {
+            audioController.SetIsMoving(groundMovementController.IsGrounded && Mathf.Abs(groundMovementController.Velocity.x) > 0.5f);
+            animator.SetGrounded(groundMovementController.IsGrounded);
+
+            if (groundMovementController.Velocity.y > 0.5f) {
+                framesRising++;
+                if (framesRising >= 10) animator.SetRising(true);
+            } else {
+                animator.SetRising(false);
+                framesRising = 0;
+            }
+        }
     }
 
     public void SetPhysicsEnabled(bool enabled) {
@@ -63,5 +73,18 @@ public class PlayerCharacterController : MonoBehaviour
 
     public void FlipSpriteX(bool flipX) {
         spriteRenderer.flipX = flipX;
+    }
+
+    public void SetIndividuallyControlled(bool value) {
+        isIndividuallyControlled = value;
+        if (!isIndividuallyControlled) {
+            audioController.SetIsMoving(false);
+            animator.SetBlocked(false);
+            animator.SetGrounded(true);
+            animator.SetRising(false);
+            animator.SetWalking(false);
+        } else {
+            groundMovementController.SetVelocity(Vector2.zero);
+        }
     }
 }

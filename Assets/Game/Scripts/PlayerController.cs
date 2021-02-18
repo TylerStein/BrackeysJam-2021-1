@@ -21,7 +21,14 @@ public class PlayerController : MonoBehaviour
     public CheckpointController checkpointController;
     public GameManager gameManager;
 
+    public SpriteRenderer catRidingSprite;
+
+    public CameraController cameraController;
+    public float catCameraSize = 1.5f;
+    public float robotCameraSize = 3.5f;
+
     private void Start() {
+        if (!cameraController) cameraController = FindObjectOfType<CameraController>();
         if (!gameManager) gameManager = FindObjectOfType<GameManager>();
         gameManager.PauseEvent.AddListener((isPaused) => {
             if (isPaused) {
@@ -40,37 +47,39 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1")) {
             if (isRobot) {
-                isRobot = false;
-                StopCatRiding();
+                ControlCat();
             } else {
-                isRobot = true;
+                ControlRobot();
             }
-        }
-
-        if (isRobot && catIsRiding == false) {
-            float catDist = Vector2.Distance(robotTrasnform.position, catTransform.position);
-            if (catDist <= catRideMinDistance) {
-                SetCatRiding();
-            }
-        }
-
-        if (catIsRiding) {
-            catTransform.position = catRideAnchor.position;
-        }
-
-        if (robotTrasnform.position.y < levelYBound || catTransform.position.y < levelYBound) {
-            Respawn();
         }
 
         if (isRobot) {
             cameraAnchor.position = robotTrasnform.position;
-            catController.FlipSpriteX(robotController.spriteRenderer.flipX);
+            cameraController.targetProjectionSize = robotCameraSize;
+            catRidingSprite.flipX = robotController.spriteRenderer.flipX;
+
+            if (!catIsRiding) {
+                float catDist = Vector2.Distance(robotTrasnform.position, catTransform.position);
+                if (catDist <= catRideMinDistance) {
+                    SetCatRiding();
+                }
+            }
         } else {
             cameraAnchor.position = catTransform.position;
+            cameraController.targetProjectionSize = catCameraSize;
+
+            if (catIsRiding) {
+                StopCatRiding();
+            }
 
             if (Input.GetButtonDown("Jump")) catController.Jump();
             if (Input.GetButton("Jump")) catController.HoldJump();
             if (Input.GetButtonUp("Jump")) catController.ReleaseJump();
+        }
+
+
+        if (robotTrasnform.position.y < levelYBound || catTransform.position.y < levelYBound) {
+            Respawn();
         }
     }
 
@@ -82,24 +91,34 @@ public class PlayerController : MonoBehaviour
         else catController.Move(horizontal, Time.fixedDeltaTime);
     }
 
+    public void ControlRobot() {
+        isRobot = true;
+        robotController.SetIndividuallyControlled(true);
+        catController.SetIndividuallyControlled(false);
+    }
+
+    public void ControlCat() {
+        isRobot = false;
+        if (catIsRiding) {
+            StopCatRiding();
+        }
+        robotController.SetIndividuallyControlled(false);
+        catController.SetIndividuallyControlled(true);
+    }
+
     public void SetCatRiding() {
         catIsRiding = true;
-        isRobot = true;
-        float catDist = Vector2.Distance(robotTrasnform.position, catTransform.position);
-        if (catDist <= catRideMinDistance) {
-            catController.TeleportTo(catRideAnchor.position);
-        }
-        catController.SetPhysicsEnabled(true);
+        catRidingSprite.enabled = true;
+        catController.TeleportTo(catRideAnchor.position);
+        catController.gameObject.SetActive(false);
     }
 
     public void StopCatRiding() {
         catIsRiding = false;
-        float catDist = Vector2.Distance(robotTrasnform.position, catTransform.position);
-        if (catDist <= catRideMinDistance) {
-            catController.TeleportTo(catRideAnchor.position);
-        }
-
-        catController.SetPhysicsEnabled(true);
+        catRidingSprite.enabled = false;
+        catController.gameObject.SetActive(true);
+        catController.TeleportTo(catRideAnchor.position);
+        catController.FlipSpriteX(robotController.spriteRenderer.flipX);
     }
 
     public void Respawn() {

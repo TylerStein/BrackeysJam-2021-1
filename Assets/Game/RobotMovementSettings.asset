@@ -15,15 +15,15 @@ MonoBehaviour:
   canJump: 0
   canMoveInAir: 0
   stickToGround: 1
-  useJumpCushion: 1
-  useJumpGracePeriod: 1
-  useJumpBoostPeriod: 1
-  maxXVelocity: 2
+  useJumpCushion: 0
+  useJumpGracePeriod: 0
+  useJumpBoostPeriod: 0
+  maxXVelocity: 1
   maxYVelocity: 8
   maxYDownVelocity: 25
-  groundMoveVelocity: 10
-  groundMoveSmoothing: 0.05
-  groundStopSmoothing: 0.1
+  groundMoveVelocity: 2
+  groundMoveSmoothing: 0.1
+  groundStopSmoothing: 0.08
   jumpForce: 600
   airMoveSmoothing: 0.05
   dampenAirMovement: 0

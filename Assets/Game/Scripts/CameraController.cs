@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public bool useBounds = false;
+    public bool trackingBounds = false;
     public Bounds bounds = new Bounds(Vector3.zero, Vector3.one);
 
     public Transform targetTransform;
@@ -52,13 +53,19 @@ public class CameraController : MonoBehaviour
         float size = Mathf.SmoothDamp(targetCamera.orthographicSize, targetProjectionSize, ref _pVelocity, pTime, pMaxSpeed, Time.fixedDeltaTime);
 
         Vector3 newPosition = new Vector3(x, y, z);
+        Bounds newBounds = bounds;
         if (useBounds) {
-            if (bounds.Contains(newPosition) == false) {
-                newPosition = bounds.ClosestPoint(newPosition);
+            if (trackingBounds) {
+                newBounds = new Bounds(bounds.center + targetPosition, bounds.size);
+            }
+
+            if (newBounds.Contains(newPosition) == false) {
+                newPosition = newBounds.ClosestPoint(newPosition);
             }
         }
 
         transform.position = newPosition;
+        targetCamera.orthographicSize = size;
     }
 
     public Vector3 GetTarget() {
@@ -88,13 +95,15 @@ public class CameraController : MonoBehaviour
 
     public void OnDrawGizmosSelected() {
         if (useBounds) {
+            Bounds newBounds = bounds;
+            if (trackingBounds) newBounds = new Bounds(targetTransform.position + targetOffset + bounds.center, bounds.size);
             Gizmos.color = Color.yellow;
-            Vector3 bottomRight = bounds.min + (Vector3.right * bounds.size.x);
-            Vector3 topLeft = bounds.min + (Vector3.up * bounds.size.y);
-            Gizmos.DrawLine(bounds.min, bottomRight);
-            Gizmos.DrawLine(bounds.min, topLeft);
-            Gizmos.DrawLine(bottomRight, bounds.max);
-            Gizmos.DrawLine(topLeft, bounds.max);
+            Vector3 bottomRight = newBounds.min + (Vector3.right * newBounds.size.x);
+            Vector3 topLeft = newBounds.min + (Vector3.up * newBounds.size.y);
+            Gizmos.DrawLine(newBounds.min, bottomRight);
+            Gizmos.DrawLine(newBounds.min, topLeft);
+            Gizmos.DrawLine(bottomRight, newBounds.max);
+            Gizmos.DrawLine(topLeft, newBounds.max);
 
         }
     }
