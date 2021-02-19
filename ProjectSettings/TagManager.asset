@@ -12,6 +12,8 @@ TagManager:
   - Cushion
   - Death_zone
   - PushBlock
+  - CatOnlyCollider
+  - BotOnlyCollider
   layers:
   - Default
   - TransparentFX
@@ -20,14 +22,14 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Trigger
   - Robot
   - Cat
   - Hazard
   - Cushion
   - Block
-  - PushBlock
-  - 
+  - BotOnlyCollider
+  - CatOnlyCollider
   - 
   - 
   - 

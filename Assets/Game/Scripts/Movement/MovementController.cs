@@ -15,7 +15,7 @@ public class MovementController : MonoBehaviour
     public bool IsHorizontalBlocked { get { return _isHorizontalBlocked; } }
 
     // Is the player colliding down
-    public bool IsGrounded { get { return _isGrounded; } }
+    public bool IsGrounded { get { return _fallFrames < _minFallFrames; } }
 
     // Rigidbody's current velocity
     public Vector2 Velocity { get { return rigidbody.velocity; } }
@@ -36,6 +36,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] private ContactPoint2D[] _contacts = new ContactPoint2D[10];
     [SerializeField] private RaycastHit2D[] _jumpContacts = new RaycastHit2D[1];
     [SerializeField] private Vector2 _currentVelocity = Vector2.zero;
+    [SerializeField] private int _fallFrames = 0;
     [SerializeField] private bool _shouldJump = false;
     [SerializeField] private float _lastDirection = 1f;
     [SerializeField] private bool _isGrounded = false;
@@ -55,6 +56,8 @@ public class MovementController : MonoBehaviour
     [SerializeField] private ContactFilter2D _contactFilter;
     [SerializeField] private float _jumpGraceTimer = 0f;
     [SerializeField] private float _jumpBoostTimer = 0f;
+
+    private const int _minFallFrames = 10;
 
     public void Start() {
         if (!_transform) _transform = GetComponent<Transform>();
@@ -108,6 +111,10 @@ public class MovementController : MonoBehaviour
 
     public void SetVelocity(Vector2 velocity) {
         rigidbody.velocity = velocity;
+    }
+
+    public void SetFallFrames(int frames) {
+        _fallFrames = frames;
     }
 
     public bool Jump(bool canJumpInAir = false) {
@@ -177,6 +184,12 @@ public class MovementController : MonoBehaviour
 
             _jumpGraceTimer -= Time.deltaTime;
             if (_jumpGraceTimer < 0f) _jumpGraceTimer = 0f;
+        }
+
+        if (!_isGrounded) {
+            _fallFrames++;
+        } else {
+            _fallFrames = 0;
         }
     }
 
@@ -248,5 +261,6 @@ public class MovementController : MonoBehaviour
                 _isHorizontalBlocked = true;
             }
         }
+
     }
 }

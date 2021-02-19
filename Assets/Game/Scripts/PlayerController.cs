@@ -91,6 +91,11 @@ public class PlayerController : MonoBehaviour
         else catController.Move(horizontal, Time.fixedDeltaTime);
     }
 
+    public void TeleportTo(Vector3 position) {
+        if (!catIsRiding) SetCatRiding();
+        robotController.TeleportTo(position);
+    }
+
     public void ControlRobot() {
         isRobot = true;
         robotController.SetIndividuallyControlled(true);

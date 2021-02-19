@@ -69,6 +69,7 @@ public class PlayerCharacterController : MonoBehaviour
     public void TeleportTo(Vector3 target) {
         transform.position = target;
         groundMovementController.SetVelocity(Vector2.zero);
+        groundMovementController.SetFallFrames(0);
     }
 
     public void FlipSpriteX(bool flipX) {
