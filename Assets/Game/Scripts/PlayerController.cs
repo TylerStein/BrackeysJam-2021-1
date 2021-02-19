@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public bool isRobot = true;
     public bool catIsRiding = true;
+    public bool catHasFoundRobot = true;
 
     public float catRideMinDistance = 1.25f;
     public float levelYBound = -10f;
@@ -72,6 +73,15 @@ public class PlayerController : MonoBehaviour
                 StopCatRiding();
             }
 
+            if (catHasFoundRobot == false) {
+                float catDist = Vector2.Distance(robotTrasnform.position, catTransform.position);
+                if (catDist <= catRideMinDistance) {
+                    catHasFoundRobot = true;
+                    ControlRobot();
+                    SetCatRiding();
+                }
+            }
+
             if (Input.GetButtonDown("Jump")) catController.Jump();
             if (Input.GetButton("Jump")) catController.HoldJump();
             if (Input.GetButtonUp("Jump")) catController.ReleaseJump();
@@ -97,6 +107,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void ControlRobot() {
+        if (catHasFoundRobot == false) return;
+
         isRobot = true;
         robotController.SetIndividuallyControlled(true);
         catController.SetIndividuallyControlled(false);
@@ -114,6 +126,8 @@ public class PlayerController : MonoBehaviour
     public void SetCatRiding() {
         catIsRiding = true;
         catRidingSprite.enabled = true;
+        catController.groundMovementController.SetVelocity(Vector2.zero);
+        catController.SetPhysicsEnabled(false);
         catController.TeleportTo(catRideAnchor.position);
         catController.gameObject.SetActive(false);
     }
@@ -124,11 +138,16 @@ public class PlayerController : MonoBehaviour
         catController.gameObject.SetActive(true);
         catController.TeleportTo(catRideAnchor.position);
         catController.FlipSpriteX(robotController.spriteRenderer.flipX);
+        catController.SetPhysicsEnabled(true);
     }
 
     public void Respawn() {
-        robotTrasnform.position = checkpointController.GetRespawnTarget().position;
-        SetCatRiding();
+        if (catHasFoundRobot) {
+            robotController.TeleportTo(checkpointController.GetRespawnTarget().position);
+            SetCatRiding();
+        } else {
+            catController.TeleportTo(checkpointController.GetRespawnTarget().position);
+        }
     }
 
     public void OnHazard(Hazard hazard) {

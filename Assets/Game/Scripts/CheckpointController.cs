@@ -7,6 +7,7 @@ public class CheckpointController : MonoBehaviour
     [SerializeField] private Transform DefaultSpawn;
     [SerializeField] private Checkpoint LastCheckpoint;
 
+
     public Transform GetRespawnTarget() {
         return LastCheckpoint?.Target ?? DefaultSpawn;
     }

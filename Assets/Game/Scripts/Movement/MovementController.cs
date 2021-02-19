@@ -79,6 +79,7 @@ public class MovementController : MonoBehaviour
         _simulate = simulate;
         if (simulate == false) rigidbody.simulated = false;
         else rigidbody.simulated = true;
+        rigidbody.velocity = Vector2.zero;
     }
 
     public void FixedUpdate() {
