@@ -58,8 +58,6 @@ public class MovementController : MonoBehaviour
     [SerializeField] private float _jumpBoostTimer = 0f;
     [SerializeField] private float _minGroundDistance = 0.1f;
 
-    [SerializeField] private Collider2D[] _stuckCast = new Collider2D[1];
-
     private const int _minFallFrames = 10;
 
     public void Start() {
@@ -226,7 +224,7 @@ public class MovementController : MonoBehaviour
     }
 
     private bool jumpCushionCollides() {
-        int castResults = collider.Cast(RelativeDown, _jumpContacts);
+        int castResults = collider.Cast(RelativeDown, _contactFilter, _jumpContacts);
         if (castResults > 0 && _jumpContacts[0].distance < movementSettings.jumpCushionDistance) {
             Debug.DrawLine(transform.position, _jumpContacts[0].point, Color.green, 0.5f);
             return true;
