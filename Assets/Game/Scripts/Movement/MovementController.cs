@@ -53,7 +53,8 @@ public class MovementController : MonoBehaviour
     [SerializeField] private Vector3 _lastGroundPosition;
 
     [SerializeField] private bool _simulate = true;
-    [SerializeField] private ContactFilter2D _contactFilter;
+    [SerializeField] private ContactFilter2D _collisionContactFilter;
+    [SerializeField] private ContactFilter2D _jumpPadContactFilter;
     [SerializeField] private float _jumpGraceTimer = 0f;
     [SerializeField] private float _jumpBoostTimer = 0f;
     [SerializeField] private float _minGroundDistance = 0.1f;
@@ -224,18 +225,23 @@ public class MovementController : MonoBehaviour
     }
 
     private bool jumpCushionCollides() {
-        int castResults = collider.Cast(RelativeDown, _contactFilter, _jumpContacts);
-        if (castResults > 0 && _jumpContacts[0].distance < movementSettings.jumpCushionDistance) {
-            Debug.DrawLine(transform.position, _jumpContacts[0].point, Color.green, 0.5f);
+        Collider2D col = Physics2D.OverlapBox(transform.position, new Vector2(0.1f, 0.1f), 0f, _jumpPadContactFilter.layerMask);
+        if (col != null) {
             return true;
-        } else if (castResults > 0) {
-            Debug.DrawLine(transform.position, _jumpContacts[0].point, Color.red, 0.5f);
+        }
+
+        int castResults = collider.Cast(RelativeDown, _jumpPadContactFilter, _jumpContacts);
+        if (castResults > 0) {
+            float zeroDist = Mathf.Abs(_jumpContacts[0].point.y - transform.position.y);
+            if (zeroDist < movementSettings.jumpCushionDistance) {
+                return true;
+            }
         }
         return false;
     }
 
     public bool CheckStuck() {
-        Collider2D col = Physics2D.OverlapBox(transform.position, new Vector2(0.1f, 0.1f), 0f, _contactFilter.layerMask);
+        Collider2D col = Physics2D.OverlapBox(transform.position, new Vector2(0.1f, 0.1f), 0f, _collisionContactFilter.layerMask);
         if (col != null) {
             Debug.Log($"Invalid Collision with Object: {col.gameObject.name}", gameObject);
         }
@@ -273,8 +279,8 @@ public class MovementController : MonoBehaviour
         }
 
         if (!_isGrounded) {
-            int groundCollisions = collider.Cast(Vector2.down, _jumpContacts, _minGroundDistance, true);
-            if (groundCollisions > 0) {
+            int groundCollisions = collider.Cast(Vector2.down, _collisionContactFilter, _jumpContacts, _minGroundDistance);
+             if (groundCollisions > 0) {
                 SetGrounded();
             }
         }

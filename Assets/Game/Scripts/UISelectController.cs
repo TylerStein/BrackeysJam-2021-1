@@ -82,7 +82,7 @@ public class UISelectController : MonoBehaviour
             axisVerticalUsed = false;
         }
 
-        if (playerInput.UseDown) {
+        if (playerInput.UseDown && playerInput.LastInputMK == false) {
             currentSelection?.Click(eventSystem);
             return;
         }

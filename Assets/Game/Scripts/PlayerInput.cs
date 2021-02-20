@@ -37,7 +37,11 @@ public class PlayerInput : MonoBehaviour
     }
 
     void UpdateInput() {
-        UseDown = Input.GetButtonDown("Fire1");
+        bool cUseDown = Input.GetButtonDown("CFire1");
+        UseDown = Input.GetButtonDown("Fire1") || cUseDown;
+
+        if (cUseDown) LastInputMK = false;
+        else if (UseDown) LastInputMK = true;
 
         JumpDown = Input.GetButtonDown("Jump");
         Jump = Input.GetButton("Jump");
@@ -49,11 +53,13 @@ public class PlayerInput : MonoBehaviour
         Vector2 cLookInput = new Vector2(Input.GetAxis("CLookHorizontal"), Input.GetAxis("CLookVertical"));
         Vector3 screenMouse = Input.mousePosition;
         Vector3 mouseMove = LastScreenMouse - screenMouse;
-        if (cLookInput.sqrMagnitude > Mathf.Epsilon) {
-            LastInputMK = false;
-        } else if (mouseMove.sqrMagnitude > Mathf.Epsilon) {
-            LastInputMK = true;
-        }
+
+        //if (cLookInput.sqrMagnitude > Mathf.Epsilon) {
+        //    LastInputMK = false;
+        //} else if (mouseMove.sqrMagnitude > Mathf.Epsilon) {
+        //    LastInputMK = true;
+        //}
+
         lastScreenMouse = screenMouse;
 
         LookInput = LastInputMK ? new Vector2(mouseMove.x, mouseMove.y).normalized : cLookInput;

@@ -14,6 +14,7 @@ TagManager:
   - PushBlock
   - CatOnlyCollider
   - BotOnlyCollider
+  - Booster
   layers:
   - Default
   - TransparentFX
@@ -30,7 +31,7 @@ TagManager:
   - Block
   - BotOnlyCollider
   - CatOnlyCollider
-  - 
+  - Booster
   - 
   - 
   - 

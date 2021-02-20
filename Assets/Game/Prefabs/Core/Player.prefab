@@ -220,16 +220,30 @@ MonoBehaviour:
   _groundTransform: {fileID: 0}
   _lastGroundPosition: {x: 0, y: 0, z: 0}
   _simulate: 1
-  _contactFilter:
+  _collisionContactFilter:
     useTriggers: 0
-    useLayerMask: 1
+    useLayerMask: 0
     useDepth: 0
     useOutsideDepth: 0
     useNormalAngle: 0
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 64
+      m_Bits: 12801
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  _jumpPadContactFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
@@ -237,8 +251,6 @@ MonoBehaviour:
   _jumpGraceTimer: 0
   _jumpBoostTimer: 0
   _minGroundDistance: 0.1
-  _stuckCast:
-  - {fileID: 0}
 --- !u!114 &2575758289918382140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,16 +1002,30 @@ MonoBehaviour:
   _groundTransform: {fileID: 0}
   _lastGroundPosition: {x: 0, y: 0, z: 0}
   _simulate: 1
-  _contactFilter:
+  _collisionContactFilter:
     useTriggers: 0
-    useLayerMask: 1
+    useLayerMask: 0
     useDepth: 0
     useOutsideDepth: 0
     useNormalAngle: 0
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 320
+      m_Bits: 20737
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  _jumpPadContactFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 53505
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
@@ -1007,8 +1033,6 @@ MonoBehaviour:
   _jumpGraceTimer: 0
   _jumpBoostTimer: 0
   _minGroundDistance: 0.1
-  _stuckCast:
-  - {fileID: 0}
 --- !u!114 &2575758291404720669
 MonoBehaviour:
   m_ObjectHideFlags: 0

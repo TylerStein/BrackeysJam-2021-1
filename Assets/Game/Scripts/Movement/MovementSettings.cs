@@ -25,6 +25,9 @@ public class MovementSettings : ScriptableObject
     [Tooltip("Provide extra jump force when holding the jump button")]
     [SerializeField] public bool useJumpBoostPeriod = true;
 
+    [Tooltip("Can be affected by boosters")]
+    [SerializeField] public bool useBoosters = true;
+
     [Header("General")]
 
     [Tooltip("Clamp all velocity to this magnitude")]
