@@ -19,12 +19,12 @@ MonoBehaviour:
   useJumpGracePeriod: 1
   useJumpBoostPeriod: 1
   maxXVelocity: 4
-  maxYVelocity: 6.2
+  maxYVelocity: 12
   maxYDownVelocity: 25
   groundMoveVelocity: 4
   groundMoveSmoothing: 0.02
   groundStopSmoothing: 0.05
-  jumpForce: 20
+  jumpForce: 17
   airMoveSmoothing: 0.05
   dampenAirMovement: 0
   airStopSmoothing: 0.07
@@ -32,7 +32,7 @@ MonoBehaviour:
   jumpCushionDistance: 0.5
   jumpGracePeriod: 0.15
   jumpBoostPeriod: 0.2
-  jumpBoostMaxVelocity: 32
+  jumpBoostMaxVelocity: 30
   blockingLayer:
     serializedVersion: 2
     m_Bits: 4352

@@ -12,12 +12,18 @@ public class CharacterAudioController : MonoBehaviour
     public AudioSource jumpSource;
     public AudioSource landSource;
 
+    public float stepMinPitch = 0.95f;
+    public float stepMaxPitch = 1.05f;
+
     public void SetIsMoving(bool value) {
         isMoving = value;
         if (!isMoving) stepTimer = stepTimeOffset * 0.5f;
     }
     public void PlayStep() {
-        if (stepSource) stepSource.Play();
+        if (stepSource) {
+            stepSource.pitch = Random.Range(stepMinPitch, stepMaxPitch);
+            stepSource.Play();
+        }
     }
 
     public void PlayJump() {

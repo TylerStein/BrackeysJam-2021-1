@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     public LayerMask HazardLayerMask;
     public PlayerController playerController;
     public CharacterAnimator animator;
+    public CharacterAudioController audioController;
 
     public void Start() {
         if (!gameManager) gameManager = FindObjectOfType<GameManager>();
@@ -41,6 +42,8 @@ public class EnemyController : MonoBehaviour
         if (Physics2D.Raycast(edgeRayOrigin, Vector2.down, edgeRayDistance, movement.movementSettings.blockingLayer.value) == false) {
             moveDirection *= -1;
         }
+
+        audioController.SetIsMoving(movement.IsGrounded && Mathf.Abs(movement.Velocity.x) > 0.5f);
 
         sprite.flipX = movement.LastDirection > 0f;
         animator.SetWalking(true);

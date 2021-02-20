@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DynamicLift : MonoBehaviour
 {
@@ -13,17 +14,26 @@ public class DynamicLift : MonoBehaviour
     public int MoveDirection = 0;
     public float MovePercent = 0f;
 
+    public UnityEvent PointAEvent = new UnityEvent();
+    public UnityEvent PointBEvent = new UnityEvent();
+
+    public GameManager GameManager;
+
     private void Start() {
+        if (!GameManager) GameManager = FindObjectOfType<GameManager>();
         UpdatePosition();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.IsPaused) return;
+
         if (MoveDirection > 0) {
             if (MovePercent >= 1f) {
                 MovePercent = 1f;
                 MoveDirection = 0;
+                PointBEvent.Invoke();
                 return;
             }
 
@@ -33,6 +43,7 @@ public class DynamicLift : MonoBehaviour
             if (MovePercent <= 0f) {
                 MovePercent = 0f;
                 MoveDirection = 0;
+                PointAEvent.Invoke();
                 return;
             }
 

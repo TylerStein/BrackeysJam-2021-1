@@ -56,6 +56,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] private ContactFilter2D _contactFilter;
     [SerializeField] private float _jumpGraceTimer = 0f;
     [SerializeField] private float _jumpBoostTimer = 0f;
+    [SerializeField] private float _minGroundDistance = 0.1f;
 
     private const int _minFallFrames = 10;
 
@@ -263,5 +264,11 @@ public class MovementController : MonoBehaviour
             }
         }
 
+        if (!_isGrounded) {
+            int groundCollisions = collider.Cast(Vector2.down, _jumpContacts, _minGroundDistance, true);
+            if (groundCollisions > 0) {
+                SetGrounded();
+            }
+        }
     }
 }

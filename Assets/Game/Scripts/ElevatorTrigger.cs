@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ElevatorTrigger : MonoBehaviour
 {
-    public Animator ElevatorAnimator;
-    public List<GameObject> Objects;
+    public DynamicLift Lift;
+
+    public Collider2D PlayerTrigger;
+    public Collider2D ObstacleTrigger;
 
     public ElevatorDoors EntranceDoors;
     public ElevatorDoors ExitDoors;
@@ -16,30 +18,52 @@ public class ElevatorTrigger : MonoBehaviour
     public string catTag = "Cat";
     public string robotTag = "Robot";
 
-    public float liftTime = 5f;
-    public bool liftOnEnter = true;
-    public bool isMoving = false;
-    public bool didLift = false;
-
     public bool requireCat = true;
     public bool requireRobot = true;
     public bool requireClear = true;
 
+    public bool canTrigger = true;
+    public bool lockPlayer = false;
+    public int checkFrameFrequency = 15;
+
+    [SerializeField] private Collider2D[] _colliderContacts = new Collider2D[3];
+    [SerializeField] private int _checkFrame = 0;
+
     private void Start() {
         PlayerController = FindObjectOfType<PlayerController>();
-        ElevatorAnimator.SetBool("lift", !liftOnEnter);
+    }
+
+    public void Update() {
+        _checkFrame++;
+        if (_checkFrame >= checkFrameFrequency) {
+            _checkFrame = 0;
+            CheckObjects();
+        }
+
+        if (lockPlayer) {
+            PlayerController.TeleportTo(PlayerAnchor.position);
+        }
     }
 
     public void CheckObjects() {
-        if (isMoving || didLift) return;
+        if (Lift.MoveDirection != 0 || canTrigger == false) return;
+
+        if (requireClear) {
+            _colliderContacts = new Collider2D[3];
+            int obstacleColliderCount = ObstacleTrigger.GetContacts(_colliderContacts);
+            for (int i = 0; i < obstacleColliderCount; i++) {
+                if (_colliderContacts[i].tag != robotTag && _colliderContacts[i].tag != catTag) return;
+            }
+        }
 
         bool hasRobot = false;
         bool hasCat = false;
-        bool isClear = true;
-        for (int i = 0; i < Objects.Count; i++) {
-            if (Objects[i].tag == robotTag) hasRobot = true;
-            else if (Objects[i].tag == catTag) hasCat = true;
-            else isClear = false;
+
+        _colliderContacts = new Collider2D[3];
+        int playerColliderCount = PlayerTrigger.GetContacts(_colliderContacts);
+        for (int i = 0; i < playerColliderCount; i++) {
+            if (_colliderContacts[i].tag == robotTag) hasRobot = true;
+            else if (_colliderContacts[i].tag == catTag) hasCat = true;
         }
 
         if (requireCat && requireRobot) {
@@ -51,40 +75,26 @@ public class ElevatorTrigger : MonoBehaviour
 
         if (requireCat == true && hasCat == false) return;
         else if (requireRobot == true && hasRobot == false) return;
-        else if (requireClear == true && isClear == false) return;
         else {
             MoveElevator();
         }
     }
 
     public void MoveElevator() {
-        isMoving = true;
+        lockPlayer = true;
         PlayerController.TeleportTo(PlayerAnchor.position);
 
         EntranceDoors.SetOpen(false);
         EntranceDoors.CloseEvent.AddListener(() => {
             EntranceDoors.CloseEvent.RemoveAllListeners();
-            ElevatorAnimator.SetBool("lift", true);
-            StartCoroutine(LiftRoutine());
+            Lift.MoveDirection = 1;
+            Lift.PointBEvent.AddListener(() => {
+                Lift.PointBEvent.RemoveAllListeners();
+                ExitDoors.SetOpen(true);
+                lockPlayer = false;
+            });
         });
 
-        didLift = true;
-        liftOnEnter = !liftOnEnter;
-    }
-
-    private IEnumerator LiftRoutine() {
-        yield return new WaitForSeconds(liftTime);
-        ExitDoors.SetOpen(true);
-        isMoving = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision) {
-        Objects.Add(collision.gameObject);
-        CheckObjects();
-    }
-
-    private void OnTriggerExit2D(Collider2D collision) {
-        Objects.Remove(collision.gameObject);
-        CheckObjects();
+        canTrigger = false;
     }
 }
