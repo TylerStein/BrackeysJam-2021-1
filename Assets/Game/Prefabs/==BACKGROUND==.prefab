@@ -84,6 +84,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6070007888017600161, guid: db55b5d20aaaeb64ea009a638724a59a, type: 3}
+      propertyPath: yOffset
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070007888017600161, guid: db55b5d20aaaeb64ea009a638724a59a, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 0}
@@ -148,6 +152,10 @@ PrefabInstance:
     - target: {fileID: 7885219766858309864, guid: 96b36634eb6c6f143968fc0af39e0b3a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7885219766858309865, guid: 96b36634eb6c6f143968fc0af39e0b3a, type: 3}
+      propertyPath: yOffset
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7885219766858309865, guid: 96b36634eb6c6f143968fc0af39e0b3a, type: 3}
       propertyPath: mainCamera

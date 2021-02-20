@@ -2034,10 +2034,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2575758290376846845, guid: 5c9091357bfb53a4e96191ec7612db6c, type: 3}
-      propertyPath: CatJoinPlayerEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2575758290376846845, guid: 5c9091357bfb53a4e96191ec7612db6c, type: 3}
       propertyPath: CatJoinPlayerEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
