@@ -13,6 +13,8 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private bool jump;
     [SerializeField] private bool jumpUp;
     [SerializeField] private bool useDown;
+    [SerializeField] private bool secondaryDown;
+    [SerializeField] private bool secondaryUp;
 
     public Vector2 MoveInput { get => moveInput; private set => moveInput = value; }
     public Vector2 LookInput { get => lookInput; private set => lookInput = value; }
@@ -25,6 +27,9 @@ public class PlayerInput : MonoBehaviour
     public bool Jump { get => jump; private set => jump = value; }
     public bool JumpUp { get => jumpUp; private set => jumpUp = value; }
     public bool UseDown { get => useDown; private set => useDown = value; }
+
+    public bool SecondaryDown { get => secondaryDown; private set => secondaryDown = value; }
+    public bool SecondaryUp { get => secondaryUp; private set => secondaryUp = value; }
 
     // Start is called before the first frame update
     void Start() {
@@ -46,6 +51,9 @@ public class PlayerInput : MonoBehaviour
         JumpDown = Input.GetButtonDown("Jump");
         Jump = Input.GetButton("Jump");
         JumpUp = Input.GetButtonUp("Jump");
+
+        SecondaryDown = Input.GetButtonDown("Secondary");
+        SecondaryUp = Input.GetButtonUp("Secondary");
 
         PauseDown = Input.GetButtonDown("Pause");
         MoveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));

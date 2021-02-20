@@ -7,7 +7,8 @@ public class AudioManager : MonoBehaviour
 {
     public OptionsManager optionsManager;
     public AudioMixer mixer;
-    public string masterVolumeParameter = "MasterVolume";
+    public string musicVolumeParameter = "MusicVolume";
+    public string sfxVolumeParameter = "SFXVolume";
 
     public List<AudioTrack> audioTracks;
 
@@ -20,8 +21,11 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void OnChangeOptions(GameOptions options)
     {
-        float dbVolume = (options.volume * 80f) - 80f;
-        mixer.SetFloat(masterVolumeParameter, dbVolume);
+        float musicVolume = (options.music_volume * 80f) - 80f;
+        mixer.SetFloat(musicVolumeParameter, musicVolume);
+
+        float sfxVolume = (options.sxf_volume * 80f) - 80f;
+        mixer.SetFloat(sfxVolumeParameter, sfxVolume);
     }
 
     void FadeInTrack(int index, bool solo = false, float rate = 1f) {

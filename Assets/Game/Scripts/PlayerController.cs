@@ -73,12 +73,21 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (!disablePlayerInput && playerInput.SecondaryDown) {
+            if (isRobot) robotController.StartGrab();
+            else catController.StartGrab();
+        }
+
+        if (!disablePlayerInput && playerInput.SecondaryUp) {
+            if (isRobot) robotController.StopGrab();
+            else catController.StopGrab();
+        }
+
         if (!isRobot && !catIsRiding) {
             if (!disablePlayerInput && playerInput.JumpDown) catController.Jump();
             if (!disablePlayerInput && playerInput.Jump) catController.HoldJump();
             if (playerInput.JumpUp) catController.ReleaseJump();
         }
-
 
         if (robotTrasnform.position.y < levelYBound || catTransform.position.y < levelYBound) {
             Respawn();

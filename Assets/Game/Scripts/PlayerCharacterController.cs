@@ -13,6 +13,13 @@ public class PlayerCharacterController : MonoBehaviour
     public CharacterAnimator animator;
     public CharacterAudioController audioController;
 
+    public bool canGrab = false;
+    public ContactFilter2D grabFilter;
+    public Rigidbody2D grabbedBody;
+    public Vector3 grabbedBodyInitialOffset = Vector3.zero;
+    public float grabDistance;
+    public float grabForce = 100f;
+
     public bool isIndividuallyControlled = true;
     public int minFramesRising = 10;
     private int framesRising = 0;
@@ -26,13 +33,14 @@ public class PlayerCharacterController : MonoBehaviour
     void FixedUpdate() {
         if (pauseManager.IsPaused) return;
 
-        if (groundMovementController.Simulating) {
+        if (groundMovementController.Simulating && !grabbedBody) {
             spriteRenderer.flipX = (groundMovementController.LastDirection > 0f);
         }
 
         if (isIndividuallyControlled) {
             audioController.SetIsMoving(groundMovementController.IsGrounded && Mathf.Abs(groundMovementController.Velocity.x) != 0f);
             animator.SetGrounded(groundMovementController.IsGrounded);
+            animator.SetBlocked(groundMovementController.IsHorizontalBlocked);
 
             if (groundMovementController.Velocity.y > 0.5f) {
                 framesRising++;
@@ -62,7 +70,32 @@ public class PlayerCharacterController : MonoBehaviour
         groundMovementController.ReleaseJump();
     }
 
+    public void StartGrab() {
+        if (!canGrab) return;
+        RaycastHit2D[] grabHits = new RaycastHit2D[3];
+        int grabHitCount = Physics2D.Raycast(transform.position, Vector2.right * groundMovementController.LastDirection, grabFilter, grabHits, grabDistance);
+        Debug.DrawLine(transform.position, transform.position + (Vector3.right * groundMovementController.LastDirection * grabDistance), Color.blue, 1.0f);
+        if (grabHitCount > 0) {
+            grabbedBody = grabHits[0].rigidbody;
+            grabbedBody.isKinematic = true;
+            grabbedBodyInitialOffset = grabbedBody.transform.position - transform.position;
+        }
+    }
+
+    public void StopGrab() {
+        if (grabbedBody) {
+            grabbedBody.isKinematic = false;
+            grabbedBody = null;
+        }
+    }
+
     public void Move(float horizontal, float deltaTime) {
+        // if (grabbedBody) grabbedBody.AddForce(Vector2.right * horizontal * grabForce, ForceMode2D.Force);
+        if (grabbedBody) {
+            Vector3 adjustedPosition = transform.position + grabbedBodyInitialOffset + (Vector3.up * 0.01f);
+            grabbedBody.position = adjustedPosition;
+            // grabbedBody.velocity = new Vector2(groundMovementController.Velocity.x, 0f);
+        }
         groundMovementController.Move(horizontal, deltaTime);
         animator.SetWalking(Mathf.Abs(horizontal) > 0.25f);
     }
@@ -91,6 +124,12 @@ public class PlayerCharacterController : MonoBehaviour
             animator.SetWalking(false);
         } else {
             groundMovementController.SetVelocity(Vector2.zero);
+        }
+    }
+
+    private void OnDrawGizmos() {
+        if (grabbedBody) {
+            Gizmos.DrawLine(transform.position, grabbedBody.position);
         }
     }
 }

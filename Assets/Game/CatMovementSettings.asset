@@ -26,9 +26,10 @@ MonoBehaviour:
   groundMoveSmoothing: 0.02
   groundStopSmoothing: 0.05
   jumpForce: 17
-  airMoveSmoothing: 0.05
-  dampenAirMovement: 0
-  airStopSmoothing: 0.07
+  airMoveSmoothing: 0.001
+  dampenAirMovement: 1
+  airStopSmoothing: 1
+  airStopMaxSpeed: 20
   airMoveVelocity: 6
   jumpCushionDistance: 0.5
   jumpGracePeriod: 0.15

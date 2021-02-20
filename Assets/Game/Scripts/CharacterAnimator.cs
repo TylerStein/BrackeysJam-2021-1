@@ -23,6 +23,7 @@ public class CharacterAnimator : MonoBehaviour
 
     public string keyDead = "dead";
     public bool useDead = false;
+
     public void SetWalking(bool walking) {
         if (useWalking) animator.SetBool(keyWalking, walking);
     }

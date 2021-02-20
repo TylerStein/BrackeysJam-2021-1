@@ -205,7 +205,8 @@ MonoBehaviour:
   collider: {fileID: 2575758289918382142}
   rigidbody: {fileID: 2575758289918382143}
   _transform: {fileID: 2575758289918382138}
-  _currentVelocity: {x: 0, y: 0}
+  _currentMoveDampenVelocity: {x: 0, y: 0}
+  _currentStopDampenVelocity: {x: 0, y: 0}
   _fallFrames: 0
   _shouldJump: 0
   _lastDirection: 1
@@ -269,6 +270,25 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2575758290507129690}
   animator: {fileID: 2575758289918382141}
   audioController: {fileID: 2575758289918382129}
+  canGrab: 0
+  grabFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 64
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  grabbedBody: {fileID: 0}
+  grabbedBodyInitialOffset: {x: 0, y: 0, z: 0}
+  grabDistance: 2
+  grabForce: 100
   isIndividuallyControlled: 1
   minFramesRising: 10
 --- !u!114 &2575758289918382141
@@ -975,7 +995,8 @@ MonoBehaviour:
   collider: {fileID: 2575758291404720657}
   rigidbody: {fileID: 2575758291404720670}
   _transform: {fileID: 2575758291404720666}
-  _currentVelocity: {x: 0, y: 0}
+  _currentMoveDampenVelocity: {x: 0, y: 0}
+  _currentStopDampenVelocity: {x: 0, y: 0}
   _fallFrames: 0
   _shouldJump: 0
   _lastDirection: 1
@@ -1039,6 +1060,25 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2575758290531524352}
   animator: {fileID: 2575758291404720671}
   audioController: {fileID: 2575758291404720656}
+  canGrab: 0
+  grabFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  grabbedBody: {fileID: 0}
+  grabbedBodyInitialOffset: {x: 0, y: 0, z: 0}
+  grabDistance: 0
+  grabForce: 100
   isIndividuallyControlled: 1
   minFramesRising: 10
 --- !u!114 &2575758291404720671

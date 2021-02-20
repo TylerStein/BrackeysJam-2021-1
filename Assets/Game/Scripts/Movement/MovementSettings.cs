@@ -61,6 +61,8 @@ public class MovementSettings : ScriptableObject
     [Tooltip("Dampen ramp to stopping horizontally in the air")]
     [SerializeField] public float airStopSmoothing = 0.07f;
 
+    [SerializeField] public float airStopMaxSpeed = 10f;
+
     [Tooltip("Movement Velocity in Air (meters/s)")]
     [SerializeField] public float airMoveVelocity = 2.0f;
 

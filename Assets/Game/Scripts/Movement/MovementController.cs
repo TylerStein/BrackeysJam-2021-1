@@ -35,7 +35,8 @@ public class MovementController : MonoBehaviour
     [SerializeField] private Transform _transform;
     [SerializeField] private ContactPoint2D[] _contacts = new ContactPoint2D[10];
     [SerializeField] private RaycastHit2D[] _jumpContacts = new RaycastHit2D[1];
-    [SerializeField] private Vector2 _currentVelocity = Vector2.zero;
+    [SerializeField] private Vector2 _currentMoveDampenVelocity = Vector2.zero;
+    [SerializeField] private Vector2 _currentStopDampenVelocity = Vector2.zero;
     [SerializeField] private int _fallFrames = 0;
     [SerializeField] private bool _shouldJump = false;
     [SerializeField] private float _lastDirection = 1f;
@@ -97,14 +98,19 @@ public class MovementController : MonoBehaviour
 
         if (!_didMoveLastFrame) {
             dampenMovement(Time.fixedDeltaTime);
+        } else {
+            _currentStopDampenVelocity = Vector2.zero;
         }
+
         _didMoveLastFrame = false;
+
 
         float maxYVelocity = _jumpBoostTimer > 0 ? movementSettings.jumpBoostMaxVelocity : movementSettings.maxYVelocity;
         rigidbody.velocity = new Vector2(
             Mathf.Clamp(rigidbody.velocity.x, -movementSettings.maxXVelocity, movementSettings.maxXVelocity),
             Mathf.Clamp(rigidbody.velocity.y, -movementSettings.maxYDownVelocity, maxYVelocity)
         );
+
     }
 
     public void SetRelative(Vector2 up, Vector2 right) {
@@ -159,10 +165,10 @@ public class MovementController : MonoBehaviour
 
         if (_isGrounded) {
             Vector2 targetVelocity = new Vector2(direction * movementSettings.groundMoveVelocity, rigidbody.velocity.y);
-            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentVelocity, movementSettings.groundMoveSmoothing * deltaTime));
+            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentMoveDampenVelocity, movementSettings.groundMoveSmoothing * deltaTime));
         } else if (movementSettings.canMoveInAir) {
             Vector2 targetVelocity = new Vector2(direction * movementSettings.airMoveVelocity, rigidbody.velocity.y);
-            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentVelocity, movementSettings.airMoveSmoothing * deltaTime));
+            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentMoveDampenVelocity, movementSettings.airMoveSmoothing * deltaTime));
         }
     }
 
@@ -180,7 +186,8 @@ public class MovementController : MonoBehaviour
             _isGrounded = false;
             _isBlocked = false;
             _jumpGraceTimer = 0f;
-            SetVelocity(new Vector2(rigidbody.velocity.x, 0f) + (RelativeUp * movementSettings.jumpForce));
+            float baseYVelocity = rigidbody.velocity.y > 0f ? rigidbody.velocity.y : 0f;
+            SetVelocity(new Vector2(rigidbody.velocity.x, baseYVelocity) + (RelativeUp * movementSettings.jumpForce));
         } else {
             _jumpBoostTimer -= Time.deltaTime;
             if (_jumpBoostTimer < 0f) _jumpBoostTimer = 0f;
@@ -208,19 +215,19 @@ public class MovementController : MonoBehaviour
     }
 
     public void ClearVelocity() {
-        SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, Vector2.zero, ref _currentVelocity, 0.0001f));
+        SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, Vector2.zero, ref _currentMoveDampenVelocity, 0.0001f));
     }
 
     private void dampenMovement(float deltaTime) {
         if (_isGrounded) {
             Vector2 targetVelocity = new Vector2(0, rigidbody.velocity.y);
-            if (Mathf.Abs(_currentVelocity.x) < 0.01f) _currentVelocity.Set(0, _currentVelocity.y);
-            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentVelocity, movementSettings.groundStopSmoothing * deltaTime));
+            // if (Mathf.Abs(_currentVelocity.x) < 0.01f) _currentVelocity.Set(0, _currentVelocity.y);
+            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentStopDampenVelocity, movementSettings.groundStopSmoothing * deltaTime));
 
         } else if (movementSettings.dampenAirMovement) {
             Vector2 targetVelocity = new Vector2(0, rigidbody.velocity.y);
-            if (Mathf.Abs(_currentVelocity.x) < 0.01f) _currentVelocity.Set(0, _currentVelocity.y);
-            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentVelocity, movementSettings.airStopSmoothing * deltaTime));
+            // if (Mathf.Abs(_currentVelocity.x) < 0.01f) _currentVelocity.Set(0, _currentVelocity.y);
+            SetVelocity(Vector2.SmoothDamp(rigidbody.velocity, targetVelocity, ref _currentStopDampenVelocity, movementSettings.airStopSmoothing, movementSettings.airStopMaxSpeed, deltaTime));
         }
     }
 
