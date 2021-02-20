@@ -1548,6 +1548,10 @@ PrefabInstance:
       propertyPath: canvasTransform
       value: 
       objectReference: {fileID: 2062140785}
+    - target: {fileID: 458204027608539192, guid: ec27af646a6f41a439645f55cc5feefd, type: 3}
+      propertyPath: _cameraController
+      value: 
+      objectReference: {fileID: 5048433542938353418}
     - target: {fileID: 6062084877764505928, guid: ec27af646a6f41a439645f55cc5feefd, type: 3}
       propertyPath: playerInput
       value: 
@@ -2091,11 +2095,11 @@ PrefabInstance:
       objectReference: {fileID: 6200000, guid: 8ccf1610f2af92d48a47aa684d250049, type: 2}
     - target: {fileID: 2575758291404720666, guid: 5c9091357bfb53a4e96191ec7612db6c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.5
+      value: 34.5
       objectReference: {fileID: 0}
     - target: {fileID: 2575758291404720666, guid: 5c9091357bfb53a4e96191ec7612db6c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.5
+      value: 8.75
       objectReference: {fileID: 0}
     - target: {fileID: 2575758291404720668, guid: 5c9091357bfb53a4e96191ec7612db6c, type: 3}
       propertyPath: _contactFilter.layerMask.m_Bits

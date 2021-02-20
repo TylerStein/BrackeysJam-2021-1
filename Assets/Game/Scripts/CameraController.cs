@@ -41,7 +41,7 @@ public class CameraController : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        if (pauseManager.IsPaused) return;
+        if (pauseManager.IsInPauseMenu) return;
 
         Vector3 target = GetTarget();
         Vector3 targetPosition = target + targetOffset;

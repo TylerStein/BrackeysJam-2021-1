@@ -24,11 +24,13 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private List<DialogSequence> _currentSequence;
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PauseManager _pauseManager;
+    [SerializeField] private CameraController _cameraController;
 
     [SerializeField] private int _sequenceIndex = 0;
     [SerializeField] private int _lineIndex = 0;
 
     private void Start() {
+        if (!_cameraController) _cameraController = FindObjectOfType<CameraController>();
         if (!_pauseManager) _pauseManager = FindObjectOfType<PauseManager>();
         if (!_playerInput) _playerInput = FindObjectOfType<PlayerInput>();
         if (!IsInDialog) EndDialog();
@@ -69,6 +71,7 @@ public class DialogManager : MonoBehaviour
             canvasGroup.alpha = 1;
             textGui.text = activeSequence.lines[_lineIndex];
             activeSequence.speakSound.Play();
+            _cameraController.targetTransform = activeSequence.speakerTransform;
         }
     }
 
