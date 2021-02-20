@@ -206,6 +206,7 @@ MonoBehaviour:
   rigidbody: {fileID: 2575758289918382143}
   _transform: {fileID: 2575758289918382138}
   _currentVelocity: {x: 0, y: 0}
+  _fallFrames: 0
   _shouldJump: 0
   _lastDirection: 1
   _isGrounded: 0
@@ -235,6 +236,9 @@ MonoBehaviour:
     maxNormalAngle: 0
   _jumpGraceTimer: 0
   _jumpBoostTimer: 0
+  _minGroundDistance: 0.1
+  _stuckCast:
+  - {fileID: 0}
 --- !u!114 &2575758289918382140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6323b2f73fe6f6468d22260fc556811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  pauseManager: {fileID: 0}
   groundMovementController: {fileID: 2575758289918382139}
   spriteTransform: {fileID: 2575758290507129688}
   spriteRenderer: {fileID: 2575758290507129690}
@@ -278,6 +282,8 @@ MonoBehaviour:
   useBlocked: 1
   keyRising: rising
   useRising: 0
+  keyDead: dead
+  useDead: 0
 --- !u!114 &2575758289918382129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,6 +300,9 @@ MonoBehaviour:
   stepSource: {fileID: 2575758291200291804}
   jumpSource: {fileID: 0}
   landSource: {fileID: 0}
+  pauseManager: {fileID: 0}
+  stepMinPitch: 0.95
+  stepMaxPitch: 1.05
 --- !u!1 &2575758290376846843
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,8 +351,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRobot: 1
   catIsRiding: 1
+  catHasFoundRobot: 1
   catRideMinDistance: 1.25
   levelYBound: -3
+  disablePlayerInput: 0
   robotTrasnform: {fileID: 2575758289918382138}
   catTransform: {fileID: 2575758291404720666}
   catRideAnchor: {fileID: 0}
@@ -351,10 +362,30 @@ MonoBehaviour:
   robotController: {fileID: 2575758289918382140}
   catController: {fileID: 2575758291404720669}
   checkpointController: {fileID: 0}
-  gameManager: {fileID: 0}
+  pauseManager: {fileID: 0}
+  playerInput: {fileID: 0}
+  minCatWarpFXDist: 0.35
+  catWarpFX: {fileID: 0}
+  catRidingSprite: {fileID: 0}
   cameraController: {fileID: 0}
   catCameraSize: 1.5
   robotCameraSize: 3.5
+  wasPausedLastFrame: 0
+  CatJoinPlayerEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DialogTrigger, Assembly-CSharp
+        m_MethodName: TriggerDialog
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2575758290471745259
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,6 +976,7 @@ MonoBehaviour:
   rigidbody: {fileID: 2575758291404720670}
   _transform: {fileID: 2575758291404720666}
   _currentVelocity: {x: 0, y: 0}
+  _fallFrames: 0
   _shouldJump: 0
   _lastDirection: 1
   _isGrounded: 0
@@ -974,6 +1006,9 @@ MonoBehaviour:
     maxNormalAngle: 0
   _jumpGraceTimer: 0
   _jumpBoostTimer: 0
+  _minGroundDistance: 0.1
+  _stuckCast:
+  - {fileID: 0}
 --- !u!114 &2575758291404720669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -986,7 +1021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6323b2f73fe6f6468d22260fc556811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  pauseManager: {fileID: 0}
   groundMovementController: {fileID: 2575758291404720668}
   spriteTransform: {fileID: 2575758290531524354}
   spriteRenderer: {fileID: 2575758290531524352}
@@ -1017,6 +1052,8 @@ MonoBehaviour:
   useBlocked: 1
   keyRising: rising
   useRising: 1
+  keyDead: dead
+  useDead: 0
 --- !u!114 &2575758291404720656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,6 +1070,9 @@ MonoBehaviour:
   stepSource: {fileID: 2575758290471745261}
   jumpSource: {fileID: 0}
   landSource: {fileID: 0}
+  pauseManager: {fileID: 0}
+  stepMinPitch: 0.95
+  stepMaxPitch: 1.05
 --- !u!1 &2575758291546944051
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,17 +31,17 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _zVelocity = 0f;
     [SerializeField] private float _pVelocity = 0f;
 
-    public GameManager gameManager;
+    public PauseManager pauseManager;
 
     // Update is called once per frame
     private void Start() {
-        if (!gameManager) gameManager = FindObjectOfType<GameManager>();
+        if (!pauseManager) pauseManager = FindObjectOfType<PauseManager>();
         if (targetCamera == null) targetCamera = Camera.main;
         TeleportToTarget();
     }
 
     private void FixedUpdate() {
-        if (gameManager.IsPaused) return;
+        if (pauseManager.IsPaused) return;
 
         Vector3 target = GetTarget();
         Vector3 targetPosition = target + targetOffset;

@@ -17,11 +17,11 @@ public class ScrollingBackground : MonoBehaviour
     public bool snapYToScreen = true;
     public float yOffset = 9f;
 
-    public GameManager gameManager;
+    public PauseManager pauseManager;
 
     void Start()
     {
-        if (!gameManager) gameManager = FindObjectOfType<GameManager>();
+        if (!pauseManager) pauseManager = FindObjectOfType<PauseManager>();
 
         if (objects.Count < 3) throw new UnityException("ScrollingBackground requires at least 3 objects");
         if (autoXDistance) {
@@ -35,7 +35,7 @@ public class ScrollingBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.IsPaused) return;
+        if (pauseManager.IsPaused) return;
 
         Vector3 screenWorld = mainCamera.ScreenToWorldPoint(trackScreenPoint);
         foreach (Transform t in objects) {

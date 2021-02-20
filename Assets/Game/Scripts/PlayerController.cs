@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float catRideMinDistance = 1.25f;
     public float levelYBound = -10f;
 
+    public bool disablePlayerInput = false;
+
     public Transform robotTrasnform;
     public Transform catTransform;
     public Transform catRideAnchor;
@@ -20,18 +23,26 @@ public class PlayerController : MonoBehaviour
     public PlayerCharacterController catController;
 
     public CheckpointController checkpointController;
-    public GameManager gameManager;
+    public PauseManager pauseManager;
+    public PlayerInput playerInput;
+
+    public float minCatWarpFXDist = 0.5f;
+    public TeleportFX catWarpFX;
 
     public SpriteRenderer catRidingSprite;
 
     public CameraController cameraController;
     public float catCameraSize = 1.5f;
     public float robotCameraSize = 3.5f;
+    public bool wasPausedLastFrame = false;
+
+    public UnityEvent CatJoinPlayerEvent = new UnityEvent();
 
     private void Start() {
         if (!cameraController) cameraController = FindObjectOfType<CameraController>();
-        if (!gameManager) gameManager = FindObjectOfType<GameManager>();
-        gameManager.PauseEvent.AddListener((isPaused) => {
+        if (!pauseManager) pauseManager = FindObjectOfType<PauseManager>();
+        if (!playerInput) playerInput = FindObjectOfType<PlayerInput>();
+        pauseManager.PauseEvent.AddListener((isPaused) => {
             if (isPaused) {
                 robotController.SetPhysicsEnabled(false);
                 catController.SetPhysicsEnabled(false);
@@ -44,15 +55,38 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (gameManager.IsPaused) return;
+        if (pauseManager.IsPaused) {
+            wasPausedLastFrame = true;
+            return;
+        }
 
-        if (Input.GetButtonDown("Fire1")) {
+        if (wasPausedLastFrame) {
+            wasPausedLastFrame = false;
+            return;
+        }
+
+        if (!disablePlayerInput && playerInput.UseDown) {
             if (isRobot) {
                 ControlCat();
             } else {
                 ControlRobot();
             }
         }
+
+        if (!isRobot && !catIsRiding) {
+            if (!disablePlayerInput && playerInput.JumpDown) catController.Jump();
+            if (!disablePlayerInput && playerInput.Jump) catController.HoldJump();
+            if (playerInput.JumpUp) catController.ReleaseJump();
+        }
+
+
+        if (robotTrasnform.position.y < levelYBound || catTransform.position.y < levelYBound) {
+            Respawn();
+        }
+    }
+
+    private void FixedUpdate() {
+        if (pauseManager.IsPaused || wasPausedLastFrame) return;
 
         if (isRobot) {
             cameraAnchor.position = robotTrasnform.position;
@@ -64,6 +98,8 @@ public class PlayerController : MonoBehaviour
                 if (catDist <= catRideMinDistance) {
                     SetCatRiding();
                 }
+            } else {
+                catTransform.position = catRideAnchor.position;
             }
         } else {
             if (catController.groundMovementController.CheckStuck()) {
@@ -84,26 +120,18 @@ public class PlayerController : MonoBehaviour
                     catHasFoundRobot = true;
                     ControlRobot();
                     SetCatRiding();
+                    CatJoinPlayerEvent.Invoke();
                 }
             }
-
-            if (Input.GetButtonDown("Jump")) catController.Jump();
-            if (Input.GetButton("Jump")) catController.HoldJump();
-            if (Input.GetButtonUp("Jump")) catController.ReleaseJump();
         }
 
-
-        if (robotTrasnform.position.y < levelYBound || catTransform.position.y < levelYBound) {
-            Respawn();
-        }
-    }
-
-    private void FixedUpdate() {
-        if (gameManager.IsPaused) return;
-
-        float horizontal = Input.GetAxis("Horizontal");
+        float horizontal = disablePlayerInput ? 0f : playerInput.MoveInput.x;
         if (isRobot) robotController.Move(horizontal, Time.fixedDeltaTime);
         else catController.Move(horizontal, Time.fixedDeltaTime);
+    }
+
+    public void SetControlled(bool canControl) {
+        disablePlayerInput = !canControl;
     }
 
     public void TeleportTo(Vector3 position) {
@@ -129,6 +157,10 @@ public class PlayerController : MonoBehaviour
     }
 
     public void SetCatRiding() {
+        float catWarpDist = Vector2.Distance(catTransform.position, catRideAnchor.position);
+        if (catWarpDist > minCatWarpFXDist) {
+            catWarpFX.PlayAt(catTransform.position);
+        }
         catIsRiding = true;
         catRidingSprite.enabled = true;
         catController.groundMovementController.SetVelocity(Vector2.zero);

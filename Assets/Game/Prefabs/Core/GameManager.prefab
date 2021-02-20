@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 8395365335307684332}
   - component: {fileID: 8395365335307684333}
   - component: {fileID: 8395365335307684330}
+  - component: {fileID: 458204027608539192}
+  - component: {fileID: 6062084877764505928}
+  - component: {fileID: 4890982446281680434}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -64,3 +67,57 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   loadOnStart: 1
+--- !u!114 &458204027608539192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395365335307684335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a6dbad417cc72449902792b5f3663a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 0}
+  textGui: {fileID: 0}
+  canvasTransform: {fileID: 0}
+  _currentSequence: []
+  _playerInput: {fileID: 4890982446281680434}
+  _pauseManager: {fileID: 6062084877764505928}
+  _sequenceIndex: 0
+  _lineIndex: 0
+--- !u!114 &6062084877764505928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395365335307684335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8043f06371c2b86459c24c92db28f49f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
+--- !u!114 &4890982446281680434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395365335307684335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a837c5547e94324aa1203b3345be900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveInput: {x: 0, y: 0}
+  lookInput: {x: 0, y: 0}
+  lastInputMK: 0
+  lastScreenMouse: {x: 0, y: 0, z: 0}
+  pauseDown: 0
+  jumpDown: 0
+  jump: 0
+  jumpUp: 0
+  useDown: 0

@@ -8,26 +8,26 @@ public class EnemyController : MonoBehaviour
     public MovementController movement;
     public Vector2 edgeRayOffset = new Vector2(1.0f, 0.0f);
     public float edgeRayDistance = 1.5f;
-    public GameManager gameManager;
     public SpriteRenderer sprite;
     public bool wasBlockedLastFrame = false;
     public LayerMask HazardLayerMask;
     public PlayerController playerController;
     public CharacterAnimator animator;
     public CharacterAudioController audioController;
+    public PauseManager pauseManager;
 
     public void Start() {
-        if (!gameManager) gameManager = FindObjectOfType<GameManager>();
+        if (!pauseManager) pauseManager = FindObjectOfType<PauseManager>();
         if (!playerController) playerController = FindObjectOfType<PlayerController>();
     }
 
     public void FixedUpdate() {
-        if (gameManager.IsPaused) return;
+        if (pauseManager.IsPaused) return;
         movement.Move(moveDirection, Time.deltaTime);
     }
 
     public void Update() {
-        if (gameManager.IsPaused) return;
+        if (pauseManager.IsPaused) return;
         Vector2 edgeRayOrigin = (Vector2)transform.position + new Vector2(edgeRayOffset.x * moveDirection, edgeRayOffset.y);
 
         if (movement.IsHorizontalBlocked) {

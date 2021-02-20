@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 9176774700556091375}
-  gameManager: {fileID: 0}
+  pauseManager: {fileID: 0}
 --- !u!114 &9176774700556091372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd9c37b9a581294d86da59ec8fd4773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   eventSystem: {fileID: 9176774701681052476}
   defaultSelection: {fileID: 6881948554887241611}
   currentSelection: {fileID: 0}
@@ -1009,14 +1010,6 @@ PrefabInstance:
     - target: {fileID: 2367737026520895091, guid: 47bdf2eb680e21341952d1f690e94e32, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367737026520895091, guid: 47bdf2eb680e21341952d1f690e94e32, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResumeGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367737026520895091, guid: 47bdf2eb680e21341952d1f690e94e32, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2367737026520895091, guid: 47bdf2eb680e21341952d1f690e94e32, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

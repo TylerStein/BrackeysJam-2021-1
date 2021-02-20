@@ -21,6 +21,8 @@ public class CharacterAnimator : MonoBehaviour
     public string keyRising = "rising";
     public bool useRising = false;
 
+    public string keyDead = "dead";
+    public bool useDead = false;
     public void SetWalking(bool walking) {
         if (useWalking) animator.SetBool(keyWalking, walking);
     }
@@ -39,5 +41,9 @@ public class CharacterAnimator : MonoBehaviour
 
     public void SetRising(bool rising) {
         if (useRising) animator.SetBool(keyRising, rising);
+    }
+
+    public void SetDead(bool dead) {
+        if (useDead) animator.SetBool(keyDead, dead);
     }
 }

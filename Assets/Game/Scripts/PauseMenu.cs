@@ -5,14 +5,14 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     public CanvasGroup canvasGroup;
-    public GameManager gameManager;
+    public PauseManager pauseManager;
     // Start is called before the first frame update
     void Start()
     {
         HideMenu();
-        if (!gameManager) gameManager = FindObjectOfType<GameManager>();
-        gameManager.PauseEvent.AddListener((isPaused) => {
-            if (isPaused) ShowMenu();
+        if (!pauseManager) pauseManager = FindObjectOfType<PauseManager>();
+        pauseManager.PauseEvent.AddListener((isPaused) => {
+            if (pauseManager.IsInPauseMenu) ShowMenu();
             else HideMenu();
         });
     }

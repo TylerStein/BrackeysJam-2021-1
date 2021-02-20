@@ -82,6 +82,7 @@ public class ElevatorTrigger : MonoBehaviour
 
     public void MoveElevator() {
         lockPlayer = true;
+        PlayerController.SetControlled(false);
         PlayerController.TeleportTo(PlayerAnchor.position);
 
         EntranceDoors.SetOpen(false);
@@ -91,6 +92,7 @@ public class ElevatorTrigger : MonoBehaviour
             Lift.PointBEvent.AddListener(() => {
                 Lift.PointBEvent.RemoveAllListeners();
                 ExitDoors.SetOpen(true);
+                PlayerController.SetControlled(true);
                 lockPlayer = false;
             });
         });

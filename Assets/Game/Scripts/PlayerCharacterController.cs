@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerCharacterController : MonoBehaviour
 {
-    public GameManager gameManager;
+    public PauseManager pauseManager;
     public MovementController groundMovementController;
 
     public Transform spriteTransform;
@@ -19,19 +19,19 @@ public class PlayerCharacterController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
-        if (!gameManager) gameManager = FindObjectOfType<GameManager>();
+        if (!pauseManager) pauseManager = FindObjectOfType<PauseManager>();
     }
 
     // Update is called once per frame
-    void Update() {
-        if (gameManager.IsPaused) return;
+    void FixedUpdate() {
+        if (pauseManager.IsPaused) return;
 
         if (groundMovementController.Simulating) {
             spriteRenderer.flipX = (groundMovementController.LastDirection > 0f);
         }
 
         if (isIndividuallyControlled) {
-            audioController.SetIsMoving(groundMovementController.IsGrounded && Mathf.Abs(groundMovementController.Velocity.x) > 0.5f);
+            audioController.SetIsMoving(groundMovementController.IsGrounded && Mathf.Abs(groundMovementController.Velocity.x) != 0f);
             animator.SetGrounded(groundMovementController.IsGrounded);
 
             if (groundMovementController.Velocity.y > 0.5f) {

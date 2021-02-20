@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class UISelectController : MonoBehaviour
 {
+    public PlayerInput playerInput;
     public EventSystem eventSystem;
 
     public UISelectable defaultSelection;
@@ -22,6 +23,7 @@ public class UISelectController : MonoBehaviour
     private void Start() {
         selectionIcon.gameObject.SetActive(false);
         if (!eventSystem) eventSystem = FindObjectOfType<EventSystem>();
+        if (!playerInput) playerInput = FindObjectOfType<PlayerInput>();
     }
 
     private void OnDisable() {
@@ -35,7 +37,7 @@ public class UISelectController : MonoBehaviour
             return;
         }
 
-        lastHorizontal = Input.GetAxis("Horizontal");
+        lastHorizontal = playerInput.MoveInput.x;
         float hAbs = Mathf.Abs(lastHorizontal);
         if (hAbs > axisThreshold) {
             if (!axisHorizontalUsed) {
@@ -58,7 +60,7 @@ public class UISelectController : MonoBehaviour
         }
 
 
-        lastVertical = Input.GetAxis("Vertical");
+        lastVertical = playerInput.MoveInput.y;
         float vAbs = Mathf.Abs(lastVertical);
         if (vAbs > axisThreshold) {
             if (!axisVerticalUsed) {
@@ -80,7 +82,7 @@ public class UISelectController : MonoBehaviour
             axisVerticalUsed = false;
         }
 
-        if (Input.GetButtonDown("Submit")) {
+        if (playerInput.UseDown) {
             currentSelection?.Click(eventSystem);
             return;
         }

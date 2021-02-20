@@ -17,17 +17,17 @@ public class DynamicLift : MonoBehaviour
     public UnityEvent PointAEvent = new UnityEvent();
     public UnityEvent PointBEvent = new UnityEvent();
 
-    public GameManager GameManager;
+    public PauseManager pauseManager;
 
     private void Start() {
-        if (!GameManager) GameManager = FindObjectOfType<GameManager>();
+        if (!pauseManager) pauseManager = FindObjectOfType<PauseManager>();
         UpdatePosition();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.IsPaused) return;
+        if (pauseManager.IsPaused) return;
 
         if (MoveDirection > 0) {
             if (MovePercent >= 1f) {

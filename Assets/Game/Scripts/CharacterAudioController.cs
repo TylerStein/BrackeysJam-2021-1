@@ -12,8 +12,14 @@ public class CharacterAudioController : MonoBehaviour
     public AudioSource jumpSource;
     public AudioSource landSource;
 
+    public PauseManager pauseManager;
+
     public float stepMinPitch = 0.95f;
     public float stepMaxPitch = 1.05f;
+
+    private void Start() {
+        if (!pauseManager) pauseManager = FindObjectOfType<PauseManager>();
+    }
 
     public void SetIsMoving(bool value) {
         isMoving = value;
@@ -35,7 +41,7 @@ public class CharacterAudioController : MonoBehaviour
     }
 
     public void Update() {
-        if (isMoving) {
+        if (isMoving && pauseManager.IsPaused == false) {
             stepTimer -= Time.deltaTime;
             if (stepTimer <= 0f) {
                 stepTimer = stepTimeOffset;
