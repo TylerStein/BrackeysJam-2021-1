@@ -66,6 +66,11 @@ public class PlayerController : MonoBehaviour
                 }
             }
         } else {
+            if (catController.groundMovementController.CheckStuck()) {
+                catController.TeleportTo(catRideAnchor.position);
+                return;
+            }
+
             cameraAnchor.position = catTransform.position;
             cameraController.targetProjectionSize = catCameraSize;
 

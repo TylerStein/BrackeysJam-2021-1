@@ -58,6 +58,8 @@ public class MovementController : MonoBehaviour
     [SerializeField] private float _jumpBoostTimer = 0f;
     [SerializeField] private float _minGroundDistance = 0.1f;
 
+    [SerializeField] private Collider2D[] _stuckCast = new Collider2D[1];
+
     private const int _minFallFrames = 10;
 
     public void Start() {
@@ -232,6 +234,14 @@ public class MovementController : MonoBehaviour
             Debug.DrawLine(transform.position, _jumpContacts[0].point, Color.red, 0.5f);
         }
         return false;
+    }
+
+    public bool CheckStuck() {
+        Collider2D col = Physics2D.OverlapBox(transform.position, new Vector2(0.1f, 0.1f), 0f, _contactFilter.layerMask);
+        if (col != null) {
+            Debug.Log($"Invalid Collision with Object: {col.gameObject.name}", gameObject);
+        }
+        return col != null;
     }
 
     private void updateContacts() {

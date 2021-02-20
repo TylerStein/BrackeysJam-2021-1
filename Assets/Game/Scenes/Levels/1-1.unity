@@ -209,9 +209,9 @@ GameObject:
   - component: {fileID: 21732959}
   - component: {fileID: 21732961}
   - component: {fileID: 21732960}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Checkpoint-2
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -365,9 +365,9 @@ GameObject:
   - component: {fileID: 55419484}
   - component: {fileID: 55419486}
   - component: {fileID: 55419485}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Checkpoint-6
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -641,7 +641,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 121786591}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Checkpoint-1-Dest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -901,9 +901,9 @@ GameObject:
   m_Component:
   - component: {fileID: 256832488}
   - component: {fileID: 256832489}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObstacleCollider
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -981,7 +981,7 @@ Transform:
   - {fileID: 1242494198}
   - {fileID: 440462811}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &277920580
 GameObject:
@@ -1181,11 +1181,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5048433542323345347, guid: beb3ee0a98c5c0d458c83dcda050c83d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.75
+      value: 25.75
       objectReference: {fileID: 0}
     - target: {fileID: 5048433542323345347, guid: beb3ee0a98c5c0d458c83dcda050c83d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.75
+      value: 5.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5048433542323345349, guid: beb3ee0a98c5c0d458c83dcda050c83d, type: 3}
+      propertyPath: _contactFilter.layerMask.m_Bits
+      value: 4353
       objectReference: {fileID: 0}
     - target: {fileID: 5048433542323345351, guid: beb3ee0a98c5c0d458c83dcda050c83d, type: 3}
       propertyPath: m_GravityScale
@@ -1289,7 +1293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5048433543441969188, guid: beb3ee0a98c5c0d458c83dcda050c83d, type: 3}
       propertyPath: catCameraSize
-      value: 2.5
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 5048433543441969188, guid: beb3ee0a98c5c0d458c83dcda050c83d, type: 3}
       propertyPath: catRideAnchor
@@ -1452,11 +1456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556000b776c416147940a710672600f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &284834112 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5048433542938353416, guid: beb3ee0a98c5c0d458c83dcda050c83d, type: 3}
-  m_PrefabInstance: {fileID: 284834110}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &345863615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,7 +1729,7 @@ Transform:
   - {fileID: 9026964466555733012}
   - {fileID: 1415508496}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &527942226
 PrefabInstance:
@@ -1814,9 +1813,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8762705811615232853, guid: 2c5909f434840f044946f55a3ea2a9e6, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8762705811615232854, guid: 2c5909f434840f044946f55a3ea2a9e6, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8762705811944256073, guid: 2c5909f434840f044946f55a3ea2a9e6, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8762705811944256073, guid: 2c5909f434840f044946f55a3ea2a9e6, type: 3}
+      propertyPath: m_TagString
+      value: Trigger
       objectReference: {fileID: 0}
     - target: {fileID: 8762705811944256074, guid: 2c5909f434840f044946f55a3ea2a9e6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3155,9 +3166,9 @@ GameObject:
   - component: {fileID: 957920346}
   - component: {fileID: 957920348}
   - component: {fileID: 957920347}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Checkpoint-3
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3381,7 +3392,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1087473846}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Checkpoint-1-Dest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3981,7 +3992,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1435932168}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Checkpoint-1-Dest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4228,9 +4239,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1529329586}
   - component: {fileID: 1529329587}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerCollider
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4310,11 +4321,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 284834112}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6529516797169092521, guid: 3cea4c217c0d56b4db2c6c4c53b71d8b, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6529516797169092521, guid: 3cea4c217c0d56b4db2c6c4c53b71d8b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4326,7 +4337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6529516797169092521, guid: 3cea4c217c0d56b4db2c6c4c53b71d8b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6529516797169092521, guid: 3cea4c217c0d56b4db2c6c4c53b71d8b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4360,6 +4371,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: ==BACKGROUND==
       objectReference: {fileID: 0}
+    - target: {fileID: 6529516798321331508, guid: 3cea4c217c0d56b4db2c6c4c53b71d8b, type: 3}
+      propertyPath: yOffset
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529516798321331508, guid: 3cea4c217c0d56b4db2c6c4c53b71d8b, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 2027038107}
+    - target: {fileID: 6529516798355243940, guid: 3cea4c217c0d56b4db2c6c4c53b71d8b, type: 3}
+      propertyPath: yOffset
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6529516798355243940, guid: 3cea4c217c0d56b4db2c6c4c53b71d8b, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 2027038107}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cea4c217c0d56b4db2c6c4c53b71d8b, type: 3}
 --- !u!1001 &1566893954
@@ -4649,7 +4676,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1785680798}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Checkpoint-1-Dest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4681,9 +4708,9 @@ GameObject:
   - component: {fileID: 1838902331}
   - component: {fileID: 1838902333}
   - component: {fileID: 1838902332}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Checkpoint-4
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5169,7 +5196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1994565459}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Checkpoint-1-Dest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5297,6 +5324,11 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6315619325174827778, guid: beb3ee0a98c5c0d458c83dcda050c83d, type: 3}
   m_PrefabInstance: {fileID: 284834110}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &2027038107 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5048433542938353415, guid: beb3ee0a98c5c0d458c83dcda050c83d, type: 3}
+  m_PrefabInstance: {fileID: 284834110}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2059634878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5395,9 +5427,9 @@ GameObject:
   - component: {fileID: 2080384450}
   - component: {fileID: 2080384452}
   - component: {fileID: 2080384451}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Checkpoint-5
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

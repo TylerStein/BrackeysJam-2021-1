@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8762705811309484314}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DefaultSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8762705811615232854}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Checkpoint-1-Dest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 8762705811944256074}
   - component: {fileID: 8762705811944256076}
   - component: {fileID: 8762705811944256075}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Checkpoint-1
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -146,9 +146,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8762705812330115150}
   - component: {fileID: 8762705812330115149}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Checkpoints
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

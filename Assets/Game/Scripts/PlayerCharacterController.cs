@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -74,6 +75,10 @@ public class PlayerCharacterController : MonoBehaviour
 
     public void FlipSpriteX(bool flipX) {
         spriteRenderer.flipX = flipX;
+    }
+
+    internal void TeleportTo(Transform catRideAnchor) {
+        throw new NotImplementedException();
     }
 
     public void SetIndividuallyControlled(bool value) {

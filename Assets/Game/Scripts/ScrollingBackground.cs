@@ -8,10 +8,14 @@ public class ScrollingBackground : MonoBehaviour
     public List<Transform> objects;
     public Camera mainCamera;
 
-    public Vector2 scrollSpeed = new Vector2(1f, 0f);
+    public float xScrollSpeed = 0.2f;
+    public Vector3 trackScreenPoint = Vector3.zero;
 
     public bool autoXDistance = true;
     public float xDistance = 15f;
+
+    public bool snapYToScreen = true;
+    public float yOffset = 9f;
 
     public GameManager gameManager;
 
@@ -33,8 +37,16 @@ public class ScrollingBackground : MonoBehaviour
     {
         if (gameManager.IsPaused) return;
 
+        Vector3 screenWorld = mainCamera.ScreenToWorldPoint(trackScreenPoint);
         foreach (Transform t in objects) {
-            t.Translate(scrollSpeed * Time.deltaTime);
+            Vector3 tPosition = t.position;
+
+            if (snapYToScreen) {
+                tPosition.y = screenWorld.y + yOffset;
+            }
+
+            tPosition.x += xScrollSpeed * Time.deltaTime;
+            t.position = tPosition;
         }
 
         float leftX = mainCamera.transform.position.x - xDistance * 1.5f;
