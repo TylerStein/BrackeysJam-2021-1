@@ -9,6 +9,18 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/MainMenu.unity
     guid: d96f606595676bb46a55d04f5dc0cee2
   - enabled: 1
-    path: Assets/Game/Scenes/Tyler.unity
-    guid: 05fa315cf6da54e469510b3167a297b0
+    path: Assets/Game/Scenes/Levels/1-0.unity
+    guid: 5a12eb3310a384a429b30855a8250a02
+  - enabled: 1
+    path: Assets/Game/Scenes/Levels/1-1.unity
+    guid: b95aea00e7782e94f9192e7f81334674
+  - enabled: 1
+    path: Assets/Game/Scenes/Levels/2-1.unity
+    guid: 1b2064add47f0ab41af0cdd09333e043
+  - enabled: 1
+    path: Assets/Game/Scenes/Levels/3-1.unity
+    guid: 8e0b299fa2477434a99c5ed61faca798
+  - enabled: 1
+    path: Assets/Game/Scenes/Levels/3-2.unity
+    guid: 54d3fefe10079f8429e0819d46974dd5
   m_configObjects: {}
