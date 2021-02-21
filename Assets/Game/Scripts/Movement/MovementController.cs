@@ -78,11 +78,19 @@ public class MovementController : MonoBehaviour
         rigidbody.gravityScale = scale;
     }
 
+    public void ZeroVelocities() {
+        _currentMoveDampenVelocity = Vector2.zero;
+        _currentStopDampenVelocity = Vector2.zero;
+    }
+
     public void SetSimulated(bool simulate) {
+        _currentMoveDampenVelocity = Vector2.zero;
+        _currentStopDampenVelocity = Vector2.zero;
+        rigidbody.velocity = Vector2.zero;
+
         _simulate = simulate;
         if (simulate == false) rigidbody.simulated = false;
         else rigidbody.simulated = true;
-        rigidbody.velocity = Vector2.zero;
     }
 
     public void FixedUpdate() {

@@ -56,6 +56,10 @@ public class PlayerCharacterController : MonoBehaviour
         groundMovementController.SetSimulated(enabled);
     }
 
+    public void ZeroVelocities() {
+        groundMovementController.ZeroVelocities();
+    }
+
     public void Jump() {
         if (groundMovementController.Jump()) {
             animator.TriggerJump();
@@ -118,6 +122,7 @@ public class PlayerCharacterController : MonoBehaviour
             animator.SetGrounded(true);
             animator.SetRising(false);
             animator.SetWalking(false);
+            ZeroVelocities();
         } else {
             groundMovementController.SetVelocity(Vector2.zero);
         }
