@@ -110,10 +110,6 @@ public class PlayerCharacterController : MonoBehaviour
         spriteRenderer.flipX = flipX;
     }
 
-    internal void TeleportTo(Transform catRideAnchor) {
-        throw new NotImplementedException();
-    }
-
     public void SetIndividuallyControlled(bool value) {
         isIndividuallyControlled = value;
         if (!isIndividuallyControlled) {

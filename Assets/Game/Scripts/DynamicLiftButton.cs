@@ -6,6 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider2D))]
 public class DynamicLiftButton : MonoBehaviour
 {
+    public Animator buttonAnimator;
     public DynamicLift lift;
     public bool canDeactivate = true;
 
@@ -13,6 +14,7 @@ public class DynamicLiftButton : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision) {
         if (TestLayer(collision.gameObject.layer)) {
+            buttonAnimator.SetBool("pressed", true);
             lift.MoveToB();
         }
     }
@@ -20,6 +22,7 @@ public class DynamicLiftButton : MonoBehaviour
         if (!canDeactivate) return;
 
         if (TestLayer(collision.gameObject.layer)) {
+            buttonAnimator.SetBool("pressed", false);
             lift.MoveToA();
         }
     }

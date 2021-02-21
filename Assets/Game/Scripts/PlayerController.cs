@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
         if (!catIsRiding && CollisionTestCatRiding()) {
             SetCatRiding();
         } else if (!catIsRiding) {
-            catController.TeleportTo(catRideAnchor);
+            catController.TeleportTo(catRideAnchor.position);
         }
 
         robotController.TeleportTo(position);
@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour
             if (CollisionTestCatRiding()) {
                 SetCatRiding();
             } else {
-                catController.TeleportTo(catRideAnchor);
+                catController.TeleportTo(catRideAnchor.position);
             }
         } else {
             catController.TeleportTo(checkpointController.GetRespawnTarget().position);
