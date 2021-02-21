@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
         if (!cameraController) cameraController = FindObjectOfType<CameraController>();
         if (!pauseManager) pauseManager = FindObjectOfType<PauseManager>();
         if (!playerInput) playerInput = FindObjectOfType<PlayerInput>();
+        if (!checkpointController) checkpointController = FindObjectOfType<CheckpointController>();
         pauseManager.PauseEvent.AddListener((isPaused) => {
             if (isPaused) {
                 robotController.SetPhysicsEnabled(false);
