@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2136109013826425083}
   m_Layer: 16
   m_Name: CatSprite
-  m_TagString: Untagged
+  m_TagString: Cat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
