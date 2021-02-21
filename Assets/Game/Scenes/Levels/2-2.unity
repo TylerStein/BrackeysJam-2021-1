@@ -258,7 +258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8762705811944256075, guid: 2c5909f434840f044946f55a3ea2a9e6, type: 3}
       propertyPath: TriggerLayerMask.m_Bits
-      value: 512
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 8762705812330115148, guid: 2c5909f434840f044946f55a3ea2a9e6, type: 3}
       propertyPath: m_Name
