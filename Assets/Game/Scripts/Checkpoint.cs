@@ -7,14 +7,17 @@ public class Checkpoint : MonoBehaviour
     public LayerMask TriggerLayerMask;
     public CheckpointController CheckpointController;
     public Transform Target;
+    public bool hasBeenUsed = false;
 
     private void Start() {
         CheckpointController = FindObjectOfType<CheckpointController>();
     }
 
-    public void OnTriggerEnter2D(Collider2D collision) {
+    public void OnTriggerStay2D(Collider2D collision) {
+        if (hasBeenUsed) return;
         if (TestLayer(collision.gameObject.layer)) {
             CheckpointController.SetCheckpoint(this);
+            hasBeenUsed = true;
         }
     }
 
