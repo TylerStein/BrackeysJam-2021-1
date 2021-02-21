@@ -538,6 +538,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2062140782}
     - target: {fileID: 458204027608539192, guid: ec27af646a6f41a439645f55cc5feefd, type: 3}
+      propertyPath: _cameraAnchor
+      value: 
+      objectReference: {fileID: 5048433543033756469}
+    - target: {fileID: 458204027608539192, guid: ec27af646a6f41a439645f55cc5feefd, type: 3}
       propertyPath: canvasTransform
       value: 
       objectReference: {fileID: 2062140785}

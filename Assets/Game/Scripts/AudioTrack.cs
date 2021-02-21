@@ -14,7 +14,8 @@ public class AudioTrack : MonoBehaviour
 
     public void Update() {
         if (fadeDirection != 0) {
-            if (source.volume == 0f || source.volume == 1f) fadeDirection = 0;
+            if (fadeDirection > 0 && source.volume >= 1f) fadeDirection = 0;
+            else if (fadeDirection < 0 && source.volume <= 0f) fadeDirection = 0;
             float addVolume = (float)fadeDirection * fadeRate * Time.deltaTime;
             float newVolume = Mathf.Clamp(source.volume + addVolume, 0f, 1f);
             source.volume = newVolume;
@@ -25,7 +26,19 @@ public class AudioTrack : MonoBehaviour
         source.volume = volume;
     }
 
+    public void PlayImmediate() {
+        fadeDirection = 0;
+        source.volume = 1f;
+        source.Play();
+    }
+    public void StopImmediate() {
+        fadeDirection = 0;
+        source.volume = 0f;
+        source.Stop();
+    }
+
     public void FadeIn(float rate = 1f) {
+        if (!source.isPlaying) source.Play();
         fadeDirection = 1;
         fadeRate = rate;
     }

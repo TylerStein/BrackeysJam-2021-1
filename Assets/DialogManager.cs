@@ -29,6 +29,8 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private int _sequenceIndex = 0;
     [SerializeField] private int _lineIndex = 0;
 
+    [SerializeField] private Transform _cameraAnchor;
+
     private void Start() {
         if (!_cameraController) _cameraController = FindObjectOfType<CameraController>();
         if (!_pauseManager) _pauseManager = FindObjectOfType<PauseManager>();
@@ -61,6 +63,7 @@ public class DialogManager : MonoBehaviour
         _currentSequence = null;
         canvasGroup.alpha = 0;
         _pauseManager.OnPauseDialogClose();
+        _cameraController.targetTransform = _cameraAnchor;
     }
 
     void DisplayCurrentDialog() {

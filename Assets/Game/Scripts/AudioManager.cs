@@ -10,12 +10,29 @@ public class AudioManager : MonoBehaviour
     public string musicVolumeParameter = "MusicVolume";
     public string sfxVolumeParameter = "SFXVolume";
 
+    public int startTrackIndex = 0;
+
     public List<AudioTrack> audioTracks;
 
     void Awake()
     {
         if (!optionsManager) optionsManager = FindObjectOfType<OptionsManager>();
         optionsManager.changeEvent.AddListener(OnChangeOptions);
+
+        if (startTrackIndex >= 0 && startTrackIndex < audioTracks.Count) {
+            PlayTrackImmediate(startTrackIndex);
+        }
+    }
+
+    // force track to play
+    public void PlayTrackImmediate(int index) {
+        for (int i = 0; i < audioTracks.Count; i++) {
+            if (i == index) {
+                audioTracks[i].PlayImmediate();
+            } else {
+                audioTracks[i].StopImmediate();
+            }
+        }
     }
 
     // Update is called once per frame
@@ -28,7 +45,15 @@ public class AudioManager : MonoBehaviour
         mixer.SetFloat(sfxVolumeParameter, sfxVolume);
     }
 
-    void FadeInTrack(int index, bool solo = false, float rate = 1f) {
+    public void FadeToSoloTrack(int index) {
+        if (index < 0 || index > audioTracks.Count) throw new UnityException("Invalid Track FadeIn Index");
+        for (int i = 0; i < audioTracks.Count; i++) {
+            if (i == index) audioTracks[i].FadeIn();
+            else audioTracks[i].FadeOut();
+        }
+    }
+
+    public void FadeInTrack(int index, bool solo = false, float rate = 1f) {
         if (index < 0 || index > audioTracks.Count) throw new UnityException("Invalid Track FadeIn Index");
         if (solo) {
             for (int i = 0; i < audioTracks.Count; i++) {
@@ -40,7 +65,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    void FadeOutTrack(int index, float rate = 1f) {
+    public void FadeOutTrack(int index, float rate = 1f) {
         if (index < 0 || index > audioTracks.Count) throw new UnityException("Invalid Track FadeOut Index");
         audioTracks[index].FadeOut(rate);
     }
