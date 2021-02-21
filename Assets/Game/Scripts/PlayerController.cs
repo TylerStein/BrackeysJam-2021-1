@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     public bool wasPausedLastFrame = false;
 
     public UnityEvent CatJoinPlayerEvent = new UnityEvent();
+    public UnityEvent RespawnEvent = new UnityEvent();
 
     private void Start() {
         if (!cameraController) cameraController = FindObjectOfType<CameraController>();
@@ -218,6 +219,7 @@ public class PlayerController : MonoBehaviour
         } else {
             catController.TeleportTo(checkpointController.GetRespawnTarget().position);
         }
+        RespawnEvent.Invoke();
     }
 
     public void OnHazard(Hazard hazard) {

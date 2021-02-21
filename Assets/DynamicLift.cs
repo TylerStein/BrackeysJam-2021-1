@@ -18,6 +18,8 @@ public class DynamicLift : MonoBehaviour
     public UnityEvent PointBEvent = new UnityEvent();
 
     public PauseManager pauseManager;
+    public bool foreverSwitch = false;
+    private bool hasBeenUsed = false;
 
     private void Start() {
         if (!pauseManager) pauseManager = FindObjectOfType<PauseManager>();
@@ -52,15 +54,28 @@ public class DynamicLift : MonoBehaviour
         }
     }
 
+    public void SnapPosition(float movePercent) {
+        MovePercent = movePercent;
+        UpdatePosition();
+    }
+
+    public void ResetUsed() {
+        hasBeenUsed = false;
+    }
+
     public void UpdatePosition() {
         MoveObject.position = Vector3.Lerp(PointA.position, PointB.position, MovePercent);
     }
 
     public void MoveToB() {
+        if (foreverSwitch && hasBeenUsed) return;
+        hasBeenUsed = true;
         MoveDirection = 1;
     }
 
     public void MoveToA() {
+        if (foreverSwitch && hasBeenUsed) return;
+        hasBeenUsed = true;
         MoveDirection = -1;
     }
 }
