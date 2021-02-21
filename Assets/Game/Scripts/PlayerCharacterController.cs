@@ -31,7 +31,15 @@ public class PlayerCharacterController : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate() {
-        if (pauseManager.IsPaused) return;
+        if (pauseManager.IsPaused) {
+            audioController.SetIsMoving(false);
+            animator.SetBlocked(false);
+            animator.SetGrounded(true);
+            animator.SetRising(false);
+            animator.SetWalking(false);
+
+            return;
+        }
 
         if (groundMovementController.Simulating && !grabbedBody) {
             spriteRenderer.flipX = (groundMovementController.LastDirection > 0f);

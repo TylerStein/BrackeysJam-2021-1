@@ -275,6 +275,117 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!1001 &27483100
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogManager
+      value: 
+      objectReference: {fileID: 905354707}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: triggerMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].speakSound
+      value: 
+      objectReference: {fileID: 27483101}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].lines.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].speakerTransform
+      value: 
+      objectReference: {fileID: 298621279}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].lines.Array.data[0]
+      value: Felix, is that you?
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].lines.Array.data[1]
+      value: Can you hear me?!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].lines.Array.data[2]
+      value: One of those robots is coming!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].lines.Array.data[3]
+      value: I'll come back for you...
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510328, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510328, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510331, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_Name
+      value: DialogTrigger (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2076457446466510278, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+--- !u!82 &27483101 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2076457446466510329, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+  m_PrefabInstance: {fileID: 27483100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &48376733 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5048433543792938467, guid: beb3ee0a98c5c0d458c83dcda050c83d, type: 3}
@@ -16704,23 +16815,25 @@ MonoBehaviour:
   dialogManager: {fileID: 905354707}
   dialogSequence:
   - lines:
-    - Hello Cat
-    - Am Robot
-    speakerTransform: {fileID: 48376733}
-    speakSound: {fileID: 876017366}
-  - lines:
-    - Hello Robot
-    - Am Cat
+    - Aghh!
+    - You'll never take me alive!
     speakerTransform: {fileID: 298621279}
     speakSound: {fileID: 876017365}
   - lines:
-    - Let's blow this joint
+    - I am a prisoner, like you
+    - Others imprisoned me for showing compassion
     speakerTransform: {fileID: 48376733}
     speakSound: {fileID: 876017366}
   - lines:
-    - Straight up
+    - I can't trust a bucket of bolts
+    - But what choice do I have...
+    - What do you say we work together and break out of here?
     speakerTransform: {fileID: 298621279}
     speakSound: {fileID: 876017365}
+  - lines:
+    - Response validated
+    speakerTransform: {fileID: 48376733}
+    speakSound: {fileID: 876017366}
   onlyOnce: 1
   useTrigger: 0
   triggerMask:
@@ -17164,6 +17277,109 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &970550457
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogManager
+      value: 
+      objectReference: {fileID: 905354707}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: triggerMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].speakSound
+      value: 
+      objectReference: {fileID: 970550458}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].speakerTransform
+      value: 
+      objectReference: {fileID: 298621279}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].lines.Array.data[0]
+      value: These robots are crazy!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].lines.Array.data[1]
+      value: What are they doing here?
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510328, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510328, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510331, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_Name
+      value: DialogTrigger (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2076457446466510278, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+--- !u!82 &970550458 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2076457446466510329, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+  m_PrefabInstance: {fileID: 970550457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1030638179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18321,6 +18537,177 @@ Transform:
   m_Father: {fileID: 2109990385}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1947088260
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510276, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogManager
+      value: 
+      objectReference: {fileID: 905354707}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: triggerMask.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].speakSound
+      value: 
+      objectReference: {fileID: 1947088261}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[1].speakSound
+      value: 
+      objectReference: {fileID: 1947088262}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[2].speakSound
+      value: 
+      objectReference: {fileID: 1947088261}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].speakerTransform
+      value: 
+      objectReference: {fileID: 298621279}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[1].lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[1].speakerTransform
+      value: 
+      objectReference: {fileID: 48376733}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[2].lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[2].speakerTransform
+      value: 
+      objectReference: {fileID: 298621279}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].lines.Array.data[0]
+      value: What a view!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].lines.Array.data[1]
+      value: Can you hear me?!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].lines.Array.data[2]
+      value: One of those robots is coming!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[0].lines.Array.data[3]
+      value: I'll come back for you...
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[1].lines.Array.data[0]
+      value: Bridge tension nominal
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[1].lines.Array.data[1]
+      value: Can you hear me?!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[1].lines.Array.data[2]
+      value: One of those robots is coming!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[1].lines.Array.data[3]
+      value: I'll come back for you...
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[2].lines.Array.data[0]
+      value: That's good to know...
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[2].lines.Array.data[1]
+      value: Can you hear me?!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[2].lines.Array.data[2]
+      value: One of those robots is coming!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510279, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: dialogSequence.Array.data[2].lines.Array.data[3]
+      value: I'll come back for you...
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510328, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510328, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076457446466510331, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+      propertyPath: m_Name
+      value: DialogTrigger (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+--- !u!82 &1947088261 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2076457446466510329, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+  m_PrefabInstance: {fileID: 1947088260}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1947088262 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2076457446466510278, guid: 4c7cd51923e220241a617e417be77119, type: 3}
+  m_PrefabInstance: {fileID: 1947088260}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1974784162
 GameObject:
   m_ObjectHideFlags: 0

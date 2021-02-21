@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 
 [System.Serializable]
@@ -30,6 +31,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private int _lineIndex = 0;
 
     [SerializeField] private Transform _cameraAnchor;
+    private UnityEvent _currentEndEvent;
 
     private void Start() {
         if (!_cameraController) _cameraController = FindObjectOfType<CameraController>();
@@ -46,13 +48,15 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    public void StartDialog(List<DialogSequence> sequence) {
+    public void StartDialog(List<DialogSequence> sequence, UnityEvent finishEvent = null) {
         _lineIndex = 0;
         _sequenceIndex = 0;
         if (sequence == null || sequence.Count == 0) {
+            _currentEndEvent = null;
             _currentSequence = null;
             Debug.LogWarning("StartDialog called with empty sequence");
         } else {
+            _currentEndEvent = finishEvent;
             _currentSequence = sequence;
             _pauseManager.OnPauseDialogOpen();
             DisplayCurrentDialog();
@@ -60,7 +64,9 @@ public class DialogManager : MonoBehaviour
     }
 
     void EndDialog() {
+        if (_currentEndEvent != null) _currentEndEvent.Invoke();
         _currentSequence = null;
+        _currentEndEvent = null;
         canvasGroup.alpha = 0;
         _pauseManager.OnPauseDialogClose();
         _cameraController.targetTransform = _cameraAnchor;

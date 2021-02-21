@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DialogTrigger : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class DialogTrigger : MonoBehaviour
     public bool onlyOnce = true;
     public bool useTrigger = true;
     public LayerMask triggerMask = new LayerMask();
+    public UnityEvent dialogFinishedEvent = new UnityEvent();
 
     private bool hasBeenTriggered = false;
 
@@ -26,7 +28,7 @@ public class DialogTrigger : MonoBehaviour
         if (hasBeenTriggered && onlyOnce) return;
         if (TestLayer(collision.gameObject.layer)) {
             hasBeenTriggered = true;
-            dialogManager.StartDialog(dialogSequence);
+            dialogManager.StartDialog(dialogSequence, dialogFinishedEvent);
         }
     }
 
