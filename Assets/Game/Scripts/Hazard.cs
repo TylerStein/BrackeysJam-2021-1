@@ -12,16 +12,23 @@ public class Hazard : MonoBehaviour
         if (!PlayerController) PlayerController = FindObjectOfType<PlayerController>();
     }
 
-    public void OnTriggerEnter2D(Collider2D collision) {
+    //public void OnTriggerEnter2D(Collider2D collision) {
+    //    if (TestLayer(collision.gameObject.layer)) {
+    //        PlayerController.OnHazard(this);
+    //    }
+    //}
+
+    public void OnTriggerStay(Collider2D collision) {
         if (TestLayer(collision.gameObject.layer)) {
             PlayerController.OnHazard(this);
         }
     }
-    public void OnTriggerExit2D(Collider2D collision) {
-        if (TestLayer(collision.gameObject.layer)) {
-            PlayerController.OnHazard(this);
-        }
-    }
+
+    //public void OnTriggerExit2D(Collider2D collision) {
+    //    if (TestLayer(collision.gameObject.layer)) {
+    //        PlayerController.OnHazard(this);
+    //    }
+    //}
 
     private bool TestLayer(int otherLayer) {
         return HazardLayerMask == (HazardLayerMask.value | (1 << otherLayer));
