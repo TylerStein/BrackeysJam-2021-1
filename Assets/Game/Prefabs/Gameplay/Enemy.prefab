@@ -101,7 +101,8 @@ MonoBehaviour:
   collider: {fileID: 8098865379113358289}
   rigidbody: {fileID: 8098865379113358288}
   _transform: {fileID: 8098865379113358291}
-  _currentVelocity: {x: 0, y: 0}
+  _currentMoveDampenVelocity: {x: 0, y: 0}
+  _currentStopDampenVelocity: {x: 0, y: 0}
   _fallFrames: 0
   _shouldJump: 0
   _lastDirection: 1
@@ -116,7 +117,21 @@ MonoBehaviour:
   _groundTransform: {fileID: 0}
   _lastGroundPosition: {x: 0, y: 0, z: 0}
   _simulate: 1
-  _contactFilter:
+  _collisionContactFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  _jumpPadContactFilter:
     useTriggers: 0
     useLayerMask: 0
     useDepth: 0
@@ -149,7 +164,6 @@ MonoBehaviour:
   movement: {fileID: 8098865379113358290}
   edgeRayOffset: {x: 0.5, y: 0}
   edgeRayDistance: 1
-  gameManager: {fileID: 0}
   sprite: {fileID: 8098865380194562952}
   wasBlockedLastFrame: 0
   HazardLayerMask:
@@ -158,6 +172,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   animator: {fileID: 8098865379113358300}
   audioController: {fileID: 4399633758034373599}
+  pauseManager: {fileID: 0}
 --- !u!114 &8098865379113358300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +196,8 @@ MonoBehaviour:
   useBlocked: 0
   keyRising: rising
   useRising: 0
+  keyDead: dead
+  useDead: 0
 --- !u!114 &4399633758034373599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +214,7 @@ MonoBehaviour:
   stepSource: {fileID: 5699949520947962576}
   jumpSource: {fileID: 0}
   landSource: {fileID: 0}
+  pauseManager: {fileID: 0}
   stepMinPitch: 0.95
   stepMaxPitch: 1.05
 --- !u!82 &5699949520947962576
@@ -208,10 +226,10 @@ AudioSource:
   m_GameObject: {fileID: 8098865379113358294}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 55da4138f20fa8c449ec3df3adf09f92, type: 2}
+  OutputAudioMixerGroup: {fileID: 7424254785616098285, guid: 55da4138f20fa8c449ec3df3adf09f92, type: 2}
   m_audioClip: {fileID: 8300000, guid: c145bdca7709ae149a7bc5584a797725, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1.0135612
   Loop: 0
   Mute: 0

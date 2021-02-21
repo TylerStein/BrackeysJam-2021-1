@@ -46,7 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionsManager: {fileID: 0}
   mixer: {fileID: 24100000, guid: 55da4138f20fa8c449ec3df3adf09f92, type: 2}
-  masterVolumeParameter: MasterVolume
+  musicVolumeParameter: MusicVolume
+  sfxVolumeParameter: SFXVolume
   audioTracks:
   - {fileID: 4966411510223382554}
 --- !u!1 &4966411510223382567
@@ -90,10 +91,10 @@ AudioSource:
   m_GameObject: {fileID: 4966411510223382567}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 55da4138f20fa8c449ec3df3adf09f92, type: 2}
+  OutputAudioMixerGroup: {fileID: 7923909340726372802, guid: 55da4138f20fa8c449ec3df3adf09f92, type: 2}
   m_audioClip: {fileID: 8300000, guid: 72b94316a43ffbe43828ef888b68cc93, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.305
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0

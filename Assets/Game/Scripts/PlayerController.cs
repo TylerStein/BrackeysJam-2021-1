@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
     public TeleportFX catWarpFX;
 
     public SpriteRenderer catRidingSprite;
+    public Collider2D catRideCollider;
+    public ContactFilter2D catRideCheckFilter;
+    [SerializeField] private Collider2D[] catRideCollisions = new Collider2D[1];
 
     public CameraController cameraController;
     public float catCameraSize = 1.5f;
@@ -105,7 +108,9 @@ public class PlayerController : MonoBehaviour
             if (!catIsRiding) {
                 float catDist = Vector2.Distance(robotTrasnform.position, catTransform.position);
                 if (catDist <= catRideMinDistance) {
-                    SetCatRiding();
+                    if (CollisionTestCatRiding()) {
+                        SetCatRiding();
+                    }
                 }
             } else {
                 catTransform.position = catRideAnchor.position;
@@ -128,7 +133,9 @@ public class PlayerController : MonoBehaviour
                 if (catDist <= catRideMinDistance) {
                     catHasFoundRobot = true;
                     ControlRobot();
-                    SetCatRiding();
+                    if (CollisionTestCatRiding()) {
+                        SetCatRiding();
+                    }
                     CatJoinPlayerEvent.Invoke();
                 }
             }
@@ -144,7 +151,12 @@ public class PlayerController : MonoBehaviour
     }
 
     public void TeleportTo(Vector3 position) {
-        if (!catIsRiding) SetCatRiding();
+        if (!catIsRiding && CollisionTestCatRiding()) {
+            SetCatRiding();
+        } else if (!catIsRiding) {
+            catController.TeleportTo(catRideAnchor);
+        }
+
         robotController.TeleportTo(position);
     }
 
@@ -171,6 +183,7 @@ public class PlayerController : MonoBehaviour
             catWarpFX.PlayAt(catTransform.position);
         }
         catIsRiding = true;
+        catRideCollider.isTrigger = false;
         catRidingSprite.enabled = true;
         catController.groundMovementController.SetVelocity(Vector2.zero);
         catController.SetPhysicsEnabled(false);
@@ -178,8 +191,14 @@ public class PlayerController : MonoBehaviour
         catController.gameObject.SetActive(false);
     }
 
+    public bool CollisionTestCatRiding() {
+        int collisions = catRideCollider.OverlapCollider(catRideCheckFilter, catRideCollisions);
+        return collisions == 0;
+    }
+
     public void StopCatRiding() {
         catIsRiding = false;
+        catRideCollider.isTrigger = true;
         catRidingSprite.enabled = false;
         catController.gameObject.SetActive(true);
         catController.TeleportTo(catRideAnchor.position);
@@ -190,7 +209,11 @@ public class PlayerController : MonoBehaviour
     public void Respawn() {
         if (catHasFoundRobot) {
             robotController.TeleportTo(checkpointController.GetRespawnTarget().position);
-            SetCatRiding();
+            if (CollisionTestCatRiding()) {
+                SetCatRiding();
+            } else {
+                catController.TeleportTo(catRideAnchor);
+            }
         } else {
             catController.TeleportTo(checkpointController.GetRespawnTarget().position);
         }

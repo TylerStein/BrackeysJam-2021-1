@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7874335990000020628}
   - component: {fileID: 3608750387291018971}
   - component: {fileID: 2453946213871489293}
-  m_Layer: 0
+  - component: {fileID: 2136109013826425083}
+  m_Layer: 16
   m_Name: CatSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,6 +103,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &2136109013826425083
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993403458230636674}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.25}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5}
+  m_EdgeRadius: 0
 --- !u!1 &2575758289918382136
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +426,23 @@ MonoBehaviour:
   minCatWarpFXDist: 0.35
   catWarpFX: {fileID: 0}
   catRidingSprite: {fileID: 0}
+  catRideCollider: {fileID: 2136109013826425083}
+  catRideCheckFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 130295
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  catRideCollisions:
+  - {fileID: 0}
   cameraController: {fileID: 0}
   catCameraSize: 1.5
   robotCameraSize: 3.5
@@ -446,10 +490,10 @@ AudioSource:
   m_GameObject: {fileID: 2575758290471745259}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 55da4138f20fa8c449ec3df3adf09f92, type: 2}
+  OutputAudioMixerGroup: {fileID: 7424254785616098285, guid: 55da4138f20fa8c449ec3df3adf09f92, type: 2}
   m_audioClip: {fileID: 8300000, guid: 1dc063b53ce4a0142b53f112f0d00e76, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -807,10 +851,10 @@ AudioSource:
   m_GameObject: {fileID: 2575758291200291802}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 55da4138f20fa8c449ec3df3adf09f92, type: 2}
+  OutputAudioMixerGroup: {fileID: 7424254785616098285, guid: 55da4138f20fa8c449ec3df3adf09f92, type: 2}
   m_audioClip: {fileID: 8300000, guid: c145bdca7709ae149a7bc5584a797725, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0

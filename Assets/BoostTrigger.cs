@@ -16,15 +16,13 @@ public class BoostTrigger : MonoBehaviour
     }
 
     public void FixedUpdate() {
-        float maxY = boxCollider.bounds.max.y;
         float minY = boxCollider.bounds.min.y;
+        float height = boxCollider.bounds.max.y - minY;
         for (int i = 0; i < activeTargets.Count; i++) {
             if (enableFalloff) {
-                float yDist = activeTargets[i].position.y - minY;
-                float pct = yDist / maxY;
-                if (pct <= 1f) {
-                    activeTargets[i].AddForce(boostVelocity * (1f - pct) * Time.fixedDeltaTime);
-                }
+                float forcePercent = 1f - (activeTargets[i].position.y - minY) / height;
+                if (forcePercent > 1f) forcePercent = 1f;
+                activeTargets[i].AddForce(boostVelocity *  forcePercent * Time.fixedDeltaTime);
             } else {
                 activeTargets[i].AddForce(boostVelocity * Time.fixedDeltaTime);
             }

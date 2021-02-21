@@ -32,7 +32,7 @@ TagManager:
   - BotOnlyCollider
   - CatOnlyCollider
   - Booster
-  - 
+  - ExceptPlayerCollider
   - 
   - 
   - 
